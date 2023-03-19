@@ -19,10 +19,10 @@ var requestOptions = {
 
 //get the search input element by its ID
 const searchInput = document.getElementById('search_input');
-
+const suggestionDropdown = document.getElementById('suggestions');
 
 //add an event listener to search input field
-searchInput.addEventListener('keyup', () => {
+searchInput.addEventListener('input', () => {
 	//gets the search query from the input field
 	const searchQuery = searchInput.value;
 
@@ -34,9 +34,25 @@ searchInput.addEventListener('keyup', () => {
 	fetch(apiUrl)
 		.then(response => response.json())
 		.then(data => {
-			console.log(data);
-
+			const games = data.results.slice(0,5);
+			if (searchQuery === "") {
+				suggestionDropdown.innerHTML = '';
+			}
+			else {
+				suggestionDropdown.innerHTML = '';
+				const suggestionList = document.createElement('ul');
+				games.forEach(game => {
+					const suggestionItem = document.createElement('li');
+					suggestionItem.innerText = game.name;
+					suggestionList.appendChild(suggestionItem);
+				});
+				suggestionDropdown.appendChild(suggestionList);
+			}
+			console.log(suggestionList);
 		})
+
+
+
 		//logs and errors in the console 
 		.catch(error => console.error(error));
 });
