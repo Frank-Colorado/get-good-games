@@ -17,23 +17,28 @@ var requestOptions = {
 
 */
 
-//get the search input element by its ID
+let searchQuery = '';
 const searchInput = document.getElementById('search_input');
 const suggestionDropdown = document.getElementById('suggestions');
+const ApiKey = ('a29e01702f3d4aa2a58af885563c92b7')
+const cardTitle = document.querySelector('.card-title');
+const cardImg = document.querySelector('#card_Img'); 
 
 //add an event listener to search input field
 searchInput.addEventListener('input', () => {
 	//gets the search query from the input field
-	const searchQuery = searchInput.value;
+	searchQuery = searchInput.value;
 
 	//construct the API URL with the search query as a parameter
-	const apiUrl = `https://api.rawg.io/api/games?key=a29e01702f3d4aa2a58af885563c92b7&search=${searchQuery}`;
+	const apiUrl = `https://api.rawg.io/api/games?key=${ApiKey}&search=${searchQuery}&page_size=5`;
 
-	//fetches data from the API, converts the response to JSON and logs it to the console
+	//fetches data from the API, converts the response to JSON
 	fetch(apiUrl)
 		.then(response => response.json())
 		.then(data => {
-			const games = data.results.slice(0, 5); // limit to first 5 games
+			const games = data.results;
+			const filteredGames = games.filter(game => game.name.toLowerCase().includes(searchQuery.toLowerCase()));
+			const gameImg = data.results[0].background_image;
 			// clear the suggestion dropdown if the search query is empty
 			if (searchQuery === '') {
 				suggestionDropdown.innerHTML = '';
@@ -47,12 +52,18 @@ searchInput.addEventListener('input', () => {
 					suggestionItem.addEventListener('click', () => {
 						searchInput.value = game.name; // fill out search input with suggestion text
 						suggestionDropdown.innerHTML = ''; // clear suggestion dropdown
+						cardTitle.innerHTML = game.name; // update the card title with the selected game name
+						cardImg.setAttribute('src', gameImg); //updates the picture
 					});
-					suggestionList.appendChild(suggestionItem);
+					suggestionList.appendChild(suggestionItem); //adds items to list
 				});
-				suggestionDropdown.appendChild(suggestionList);
+				suggestionDropdown.appendChild(suggestionList); //adds list to sugestion drop down
 			}
+			console.log(filteredGames);
+			console.log(gameImg);
 		})
 		//logs any errors in the console 
 		.catch(error => console.error(error));
+
+
 });
