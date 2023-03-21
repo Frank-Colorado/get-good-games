@@ -23,52 +23,37 @@
   <body>
 
 <!--Main Navigation-->
- <header class="mb-10">
+<header>
 
-    <nav class="navbar navbar-dark bg-dark">
+  <nav class="navbar navbar-dark bg-dark">
 
-      <div class="container-fluid">
+    <div class="container-fluid">
 
-        <div class="row-lg-12">
+      <a class="navbar-brand">Navbar</a>
 
-          <div class="col-lg-6">
+      <form class="d-flex input-group w-auto">
 
-            <a class="navbar-brand">Get Good Games</a>
+        <input
+          type="search"
+          class="form-control rounded"
+          placeholder="Search"
+          aria-label="Search"
+          aria-describedby="search-addon"
+        />
 
-          </div>
+        <span class="input-group-text border-0" id="search-addon">
 
-          <div class="col-lg-6">
+          <i class="fas fa-search"></i>
 
-            <form class="d-flex input-group w-auto">
+        </span>
 
-              <input
-                id="search_input"
-                type="search"
-                class="form-control rounded"
-                placeholder="Search"
-                aria-label="Search"
-                aria-describedby="search-addon"
-              />
+      </form>
 
-              <span class="input-group-text border-0" id="search-addon">
+    </div>
 
-              <i class="fas fa-search"></i>
-
-              </span>
-
-            </form>
-
-          </div>
-
-        <div id="suggestions"></div>
-
-        </div>
-
-      </div>
-
-    </nav>
-
-  </header>
+  </nav>
+  
+</header>
 <!--Main Navigation-->
 
 <!--Main Layout-->
