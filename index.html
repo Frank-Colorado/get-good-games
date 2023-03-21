@@ -16,24 +16,28 @@
       href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap"
     />
     <link rel="stylesheet" href="./assets/css/mdb.min.css" />
+
+    <link rel="stylesheet" href="./assets/css/style.css" />
+
   </head>
 
 
 
-  <body>
+<body class="bg-black">
 
 <!--Main Navigation-->
 <header>
 
-  <nav class="navbar navbar-dark bg-dark">
+  <nav class="navbar navbar-light bg-light mb-10 text-center">
 
     <div class="container-fluid">
 
       <a class="navbar-brand">Navbar</a>
 
-      <form class="d-flex input-group w-auto">
+      <form class="d-flex input-group w-auto col-lg-4">
 
         <input
+          id="search_input"
           type="search"
           class="form-control rounded"
           placeholder="Search"
@@ -47,6 +51,8 @@
 
         </span>
 
+        <div id="suggestions"></div>
+
       </form>
 
     </div>
@@ -59,7 +65,9 @@
 <!--Main Layout-->
 
   <main>
+
     <div class="container">
+
       <!--Section: Search Results-->
       <section class="mb-10 text-center">
 
@@ -74,19 +82,17 @@
 
               <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
 
-                <img src="https://mdbcdn.b-cdn.net/img/new/standard/nature/111.webp" class="img-fluid"/>
+                <img id="card_Img" src="https://mdbcdn.b-cdn.net/img/new/standard/nature/111.webp" class="img-fluid"/>
 
                 <a href="#!">
-
                   <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-
                 </a>
 
               </div>
 
               <div class="card-body">
 
-                <h5 class="card-title">Card title</h5>
+                <h5 id="card_title" class="card-title">Card title</h5>
 
                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
 
@@ -106,7 +112,7 @@
 
               <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
 
-                <img src="https://mdbcdn.b-cdn.net/img/new/standard/nature/111.webp" class="img-fluid"/>
+                <img id="card_Img" src="https://mdbcdn.b-cdn.net/img/new/standard/nature/111.webp" class="img-fluid"/>
 
                 <a href="#!">
                   <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
@@ -116,7 +122,7 @@
 
               <div class="card-body">
 
-                <h5 class="card-title">Card title</h5>
+                <h5 id="card_title" class="card-title">Card title</h5>
 
                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
 
@@ -125,7 +131,7 @@
               </div>
 
             </div>
-
+            
           </div>
           <!--Second Column-->
 
@@ -136,7 +142,7 @@
 
               <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
 
-                <img src="https://mdbcdn.b-cdn.net/img/new/standard/nature/111.webp" class="img-fluid"/>
+                <img id="card_Img" src="https://mdbcdn.b-cdn.net/img/new/standard/nature/111.webp" class="img-fluid"/>
 
                 <a href="#!">
                   <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
@@ -146,7 +152,7 @@
 
               <div class="card-body">
 
-                <h5 class="card-title">Card title</h5>
+                <h5 id="card_title" class="card-title">Card title</h5>
 
                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
 
