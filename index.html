@@ -16,22 +16,25 @@
       href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap"
     />
     <link rel="stylesheet" href="./assets/css/mdb.min.css" />
+
+    <link rel="stylesheet" href="./assets/css/style.css" />
+
   </head>
 
 
 
-  <body>
+<body class="bg-black">
 
 <!--Main Navigation-->
 <header>
 
-  <nav class="navbar navbar-dark bg-dark">
+  <nav class="navbar navbar-light bg-light mb-10 text-center">
 
     <div class="container-fluid">
 
       <a class="navbar-brand">Navbar</a>
 
-      <form class="d-flex input-group w-auto">
+      <form class="d-flex input-group w-auto col-lg-4">
 
         <input
           id="search_input"
@@ -48,9 +51,9 @@
 
         </span>
 
-      </form>
+        <div id="suggestions"></div>
 
-      <div id="suggestions"></div>
+      </form>
 
     </div>
 
@@ -62,7 +65,7 @@
 <!--Main Layout-->
 
   <main>
-    
+
     <div class="container">
 
       <!--Section: Search Results-->
