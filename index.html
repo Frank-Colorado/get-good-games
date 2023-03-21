@@ -15,50 +15,93 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap"
     />
-    <link rel="stylesheet" href="css/mdb.min.css" />
+    <link rel="stylesheet" href="./assets/css/mdb.min.css" />
   </head>
 
 
 
   <body>
 
- <header>
-    <nav class="navbar navbar-dark bg-dark">
-      <div class="container-fluid">
-        <a class="navbar-brand">Navbar</a>
-        <form class="d-flex input-group w-auto">
-          <input
-            id="search_input"
-            type="search"
-            class="form-control rounded"
-            placeholder="Search"
-            aria-label="Search"
-            aria-describedby="search-addon"
-          />
-          <span class="input-group-text border-0" id="search-addon">
-            <i class="fas fa-search"></i>
-          </span>
-        </form>
-        <div id="suggestions"></div>
-      </div>
-    </nav>
-  </header>
+<!--Main Navigation-->
+ <header class="mb-10">
 
+    <nav class="navbar navbar-dark bg-dark">
+
+      <div class="container-fluid">
+
+        <div class="row-lg-12">
+
+          <div class="col-lg-6">
+
+            <a class="navbar-brand">Get Good Games</a>
+
+          </div>
+
+          <div class="col-lg-6">
+
+            <form class="d-flex input-group w-auto">
+
+              <input
+                id="search_input"
+                type="search"
+                class="form-control rounded"
+                placeholder="Search"
+                aria-label="Search"
+                aria-describedby="search-addon"
+              />
+
+              <span class="input-group-text border-0" id="search-addon">
+
+              <i class="fas fa-search"></i>
+
+              </span>
+
+            </form>
+
+          </div>
+
+        <div id="suggestions"></div>
+
+        </div>
+
+      </div>
+
+    </nav>
+
+  </header>
+<!--Main Navigation-->
+
+<!--Main Layout-->
   <section>
+
     <div class="card">
+
       <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+
         <img id="card_Img" src="https://mdbcdn.b-cdn.net/img/new/standard/nature/111.webp" class="img-fluid"/>
+
         <a href="#!">
+
           <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+
         </a>
+
       </div>
+
       <div class="card-body">
+
         <h5 id="card_title" class="card-title">Card title</h5>
+
         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+
         <a href="#!" class="btn btn-primary">Button</a>
+
       </div>
+
     </div>
+
   </section>
+  <!--Main Layout-->
 
     <script type="text/javascript" src="./assets/js/mdb.min.js"></script>
     <!-- Custom scripts -->
