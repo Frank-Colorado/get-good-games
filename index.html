@@ -18,7 +18,7 @@
 
 <div></div>
 
-<body class="bg-black">
+<body>
 
   <!--Main Navigation-->
   <header>
@@ -31,16 +31,22 @@
 
         <form class="d-flex input-group w-auto col-lg-4">
 
-          <input id="search_input" type="search" class="form-control rounded" placeholder="Search" aria-label="Search"
-            aria-describedby="search-addon" />
+          <input 
+          id="search_input" 
+          type="search" 
+          class="form-control rounded" 
+          placeholder="Search" 
+          aria-label="Search"
+          aria-describedby="search-addon" />
+          <div id="suggestions"></div>
 
-          <span class="input-group-text border-0" id="search-addon">
+          <span class="input-group-text border-0" id="search-addon"> 
 
             <i class="fas fa-search"></i>
 
           </span>
 
-          <div id="suggestions"></div>
+         
 
         </form>
 
@@ -55,118 +61,156 @@
 
   <main>
 
-    <div class="container">
+    <div class="container-fluid">
 
-      <!--Section: Search Results-->
-      <section class="mb-10 text-center">
+      <div class="row ms-2 me-5">
 
-        <h2 class="fw-bold mb-7 text-center"> Search Results </h2>
+        <!--Side Navbar-->
+        <div class="col-md-2">
 
-        <div class="row gx-lg-5">
+          <div class="pb-5">
 
-          <!--First Column-->
-          <div class="col-lg-4 col-md-12 mb-6 mb-lg-0" id="card_0">
+            <h2> HOME</h2>
 
-            <div class="card">
-
-              <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
-
-                <img id="card_Img_0" src="https://mdbcdn.b-cdn.net/img/new/standard/nature/111.webp"
-                  class="img-fluid" />
-
-                <a href="#!">
-                  <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-                </a>
-
-              </div>
-
-              <div class="card-body">
-
-                <h5 id="card_title_0" class="card-title">Card title</h5>
-
-                <p class="card-text" id="genre_0">Some quick example text to build on the card title and make up the
-                  bulk of the card's content.</p>
-
-                <a href="#!" class="btn btn-primary">Button</a>
-
-              </div>
-
-            </div>
+            <ul>
+              <li> Popular </li>
+            </ul>
 
           </div>
-          <!--First Column-->
 
-          <!--Second Column-->
-          <div class="col-lg-4 col-md-12 mb-6 mb-lg-0" id="card_1">
+          <div class="pt-5">
 
-            <div class="card">
+            <h2> GENRES</h2>
 
-              <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
-
-                <img id="card_Img_1" src="https://mdbcdn.b-cdn.net/img/new/standard/nature/111.webp"
-                  class="img-fluid" />
-
-                <a href="#!">
-                  <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-                </a>
-
-              </div>
-
-              <div class="card-body">
-
-                <h5 id="card_title_1" class="card-title">Card title</h5>
-
-                <p class="card-text" id="genre_1">Some quick example text to build on the card title and make up the
-                  bulk of the card's content.</p>
-
-                <a href="#!" class="btn btn-primary">Button</a>
-
-              </div>
-
-            </div>
+            <ul>
+              <li> Action </li>
+              <li> Strategy </li>
+              <li> RPG </li>
+              <li> Shooter </li>
+              <li> Adventure </li>
+              <li> Puzzle </li>
+              <li> Racing </li>
+              <li> Sports </li>
+            </ul>
 
           </div>
-          <!--Second Column-->
 
-          <!--Third Column-->
-          <div class="col-lg-4 col-md-12 mb-6 mb-lg-0" id="card_2">
+        </div>
+        <!--Side Navbar-->
+        
+        <div class="col-md-10">
+          
+          <section class="mb-10 text-center">
 
-            <div class="card">
-
-              <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
-
-                <img id="card_Img_2" src="https://mdbcdn.b-cdn.net/img/new/standard/nature/111.webp"
-                  class="img-fluid" />
-
-                <a href="#!">
-                  <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-                </a>
-
+            <h2 class="fw-bold mb-7 text-center"> Search Results </h2>
+            
+            <div class="row gx-lg-5">
+    
+              <!--First Column-->
+              <div class="col-lg-4 col-md-12 mb-6 mb-lg-0" id="card_0">
+    
+                <div class="card">
+    
+                  <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+    
+                    <img id="card_Img_0" src="https://mdbcdn.b-cdn.net/img/new/standard/nature/111.webp"
+                      class="img-fluid" />
+    
+                    <a href="#!">
+                      <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                    </a>
+    
+                  </div>
+    
+                  <div class="card-body">
+    
+                    <h5 id="card_title_0" class="card-title">Card title</h5>
+    
+                    <p class="card-text" id="genre_0">Some quick example text to build on the card title and make up the
+                      bulk of the card's content.</p>
+    
+                    <a href="#!" class="btn btn-primary">Button</a>
+    
+                  </div>
+    
+                </div>
+    
               </div>
-
-              <div class="card-body">
-
-                <h5 id="card_title_2" class="card-title">Card title</h5>
-
-                <p class="card-text" id="genre_2">Some quick example text to build on the card title and make up the
-                  bulk of the card's content.</p>
-
-                <a href="#!" class="btn btn-primary">Button</a>
-
+              <!--First Column-->
+    
+              <!--Second Column-->
+              <div class="col-lg-4 col-md-12 mb-6 mb-lg-0" id="card_1">
+    
+                <div class="card">
+    
+                  <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+    
+                    <img id="card_Img_1" src="https://mdbcdn.b-cdn.net/img/new/standard/nature/111.webp"
+                      class="img-fluid" />
+    
+                    <a href="#!">
+                      <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                    </a>
+    
+                  </div>
+    
+                  <div class="card-body">
+    
+                    <h5 id="card_title_1" class="card-title">Card title</h5>
+    
+                    <p class="card-text" id="genre_1">Some quick example text to build on the card title and make up the
+                      bulk of the card's content.</p>
+    
+                    <a href="#!" class="btn btn-primary">Button</a>
+    
+                  </div>
+    
+                </div>
+    
               </div>
-
+              <!--Second Column-->
+    
+              <!--Third Column-->
+              <div class="col-lg-4 col-md-12 mb-6 mb-lg-0" id="card_2">
+    
+                <div class="card">
+    
+                  <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+    
+                    <img id="card_Img_2" src="https://mdbcdn.b-cdn.net/img/new/standard/nature/111.webp"
+                      class="img-fluid" />
+    
+                    <a href="#!">
+                      <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                    </a>
+    
+                  </div>
+    
+                  <div class="card-body">
+    
+                    <h5 id="card_title_2" class="card-title">Card title</h5>
+    
+                    <p class="card-text" id="genre_2">Some quick example text to build on the card title and make up the
+                      bulk of the card's content.</p>
+    
+                    <a href="#!" class="btn btn-primary">Button</a>
+    
+                  </div>
+    
+                </div>
+    
+              </div>
+              <!--Third Column-->
+    
             </div>
-
-          </div>
-          <!--Third Column-->
+    
+          </section>
 
         </div>
 
-      </section>
+      </div>
 
     </div>
-
-
 
   </main>
   <!--Main Layout-->
