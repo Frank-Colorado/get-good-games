@@ -1,4 +1,4 @@
-
+/* GENERAL STLYING */
 li  {
     list-style-type: none;
 }
@@ -11,9 +11,37 @@ li  {
 .gunship-font{
 
     font-family:gunship;
-    color:#ea526f
-    
+    color:#ea526f; 
+    font-size: 25px; 
 }
+
+/* HEADER-NAVBAR STYLING */
+
+.navbar-brand {
+    margin-left: 75px;
+}
+
+.header-img {
+    width: 150px;
+}
+
+.search-input {
+    margin-right: 50px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 .side-navbar a {
     font-family: gunship;
