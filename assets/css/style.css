@@ -15,7 +15,10 @@ li  {
     
 }
 
-
+.side-navbar a {
+    font-family: gunship;
+    color: #ea526f;
+}
 
 .container-fluid .search-input {
     width: 15%;
