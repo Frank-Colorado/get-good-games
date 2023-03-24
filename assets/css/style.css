@@ -2,3 +2,16 @@
 li {
     list-style-type: none;
 }
+
+@font-face{
+    font-family:"gunship";
+    src: url(../fonts/gunshipboldital.ttf);
+}
+
+#navbar-font{
+
+    font-family:gunship;
+    color:#ea526f
+    
+}
+
