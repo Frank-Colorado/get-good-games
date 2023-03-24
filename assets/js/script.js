@@ -82,6 +82,7 @@ searchInput.addEventListener('input', () => {
 			const filteredGames = games.filter(game => game.name.toLowerCase().includes(searchQuery.toLowerCase()));
 			const gameImg = data.results[0].background_image;
 			const gameGenre = data.results[0].genres[0].name;
+			const centerRow = document.querySelector('#rows')
 			// clear the suggestion dropdown if the search query is empty
 			if (searchQuery === '') {
 				suggestionDropdown.innerHTML = '';
@@ -106,6 +107,7 @@ searchInput.addEventListener('input', () => {
 						cardTitle.innerHTML = game.name; // update the card title with the selected game name
 						cardImg.setAttribute('src', gameImg); //updates the picture
 						cardGenre.innerHTML = gameGenre; // updates the genre
+						centerRow.style.justifyContent = "center";
 
 					});
 					suggestionList.appendChild(suggestionItem); //adds items to list
