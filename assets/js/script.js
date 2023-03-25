@@ -5,7 +5,7 @@ const ApiKey = ('a29e01702f3d4aa2a58af885563c92b7')
 const cardTitle = document.querySelector('.card-title');
 const cardImg = document.querySelector('#card_Img_0');
 const cardGenre = document.querySelector('#genre_0')
-const apiUrl = `https://api.rawg.io/api/games?key=${ApiKey}`
+const apiUrl = `https://api.rawg.io/api/games?key=${ApiKey}&search=${searchQuery}&page_size=5&platforms=4`
 const backgroundImage0 = document.getElementById('card_Img_0');
 const name0 = document.getElementById('card_title_0');
 const genre0 = document.getElementById('genre_0');
@@ -51,8 +51,6 @@ searchInput.addEventListener('input', () => {
 	//gets the search query from the input field
 	searchQuery = searchInput.value;
 
-	//construct the API URL with the search query as a parameter
-	const apiUrl = `https://api.rawg.io/api/games?key=${ApiKey}&search=${searchQuery}&page_size=5`;
 
 	//fetches data from the API, converts the response to JSON
 	fetch(apiUrl)
@@ -95,7 +93,6 @@ searchInput.addEventListener('input', () => {
 				suggestionDropdown.appendChild(suggestionList); //adds list to sugestion drop down
 			}
 			console.log(filteredGames);
-			console.log(gameImg);
 		})
 		//logs any errors in the console 
 		.catch(error => console.error(error));
@@ -114,7 +111,7 @@ function displayGenreData(genreName) {
 }
 
 function displayPopular() {
-	const apiPopular = `https://api.rawg.io/api/games?key=${ApiKey}&ordering=-metacritic`
+	const apiPopular = `${apiUrl}&ordering=-metacritic`
 	fetch(apiPopular)
 		.then(response => response.json())
 		.then(data => {
@@ -122,3 +119,20 @@ function displayPopular() {
 		})
 		.catch(error => console.error(error));
 }
+
+
+
+
+var formdata = new FormData();
+
+var requestOptions = {
+  method: 'GET',
+  redirect: 'follow'
+};
+
+fetch(`https://www.cheapshark.com/api/1.0/games?title=${searchQuery}`, requestOptions)
+  .then(response => response.text())
+  .then(result => console.log(result))
+  .catch(error => console.log('error', error));
+
+  
