@@ -1,22 +1,3 @@
-/*
-var requestOptions = {
-
-	method: 'GET',
-
-	redirect: 'follow'
-
-  };
-
-	fetch("https://www.cheapshark.com/api/1.0/deals?storeID=1&upperPrice=15", requestOptions)
-
-	  .then(response => response.json())
-
-	  .then(result => console.log(result))
-
-	  .catch(error => console.log('error', error));
-
-*/
-
 let searchQuery = '';
 const searchInput = document.getElementById('search_input');
 const suggestionDropdown = document.getElementById('suggestions');
@@ -24,47 +5,46 @@ const ApiKey = ('a29e01702f3d4aa2a58af885563c92b7')
 const cardTitle = document.querySelector('.card-title');
 const cardImg = document.querySelector('#card_Img_0');
 const cardGenre = document.querySelector('#genre_0')
-const apiUrl = `https://api.rawg.io/api/games?key=${ApiKey}&page_size=3`
+const apiUrl = `https://api.rawg.io/api/games?key=${ApiKey}`
+const backgroundImage0 = document.getElementById('card_Img_0');
+const name0 = document.getElementById('card_title_0');
+const genre0 = document.getElementById('genre_0');
+const backgroundImage1 = document.getElementById('card_Img_1');
+const name1 = document.getElementById('card_title_1');
+const genre1 = document.getElementById('genre_1');
+const backgroundImage2 = document.getElementById('card_Img_2');
+const name2 = document.getElementById('card_title_2');
+const genre2 = document.getElementById('genre_2');
 
+//event listener that updates the page on load 
+window.addEventListener('load', displayPopular);
 
+function updateCards(data) {
+	if (data.results) {
+		const item0 = data.results[0];
+		const itme0_genres = data.results[0].genres;
+		const itme1_genres = data.results[1].genres;
+		const itme2_genres = data.results[2].genres;
+		backgroundImage0.src = item0.background_image;
+		name0.innerText = item0.name;
+		genre0.innerText = itme0_genres[0].name;
+		const item1 = data.results[1];
+		backgroundImage1.src = item1.background_image;
+		name1.innerText = item1.name;
+		genre1.innerText = itme1_genres[0].name;
+		const item2 = data.results[2];
+		backgroundImage2.src = item2.background_image;
+		name2.innerText = item2.name;
+		genre2.innerText = itme2_genres[0].name;
+	}
+}
 
-
-
-
-window.addEventListener('load', function () {
-	const backgroundImage0 = document.getElementById('card_Img_0');
-	const name0 = document.getElementById('card_title_0');
-	const genre0 = document.getElementById('genre_0');
-	const backgroundImage1 = document.getElementById('card_Img_1');
-	const name1 = document.getElementById('card_title_1');
-	const genre1 = document.getElementById('genre_1');
-	const backgroundImage2 = document.getElementById('card_Img_2');
-	const name2 = document.getElementById('card_title_2');
-	const genre2 = document.getElementById('genre_2');
-	fetch(apiUrl)
-		.then(response => response.json())
-		.then(data => {
-			const item0 = data.results[0];
-			const itme0_genres = data.results[0].genres;
-			const itme1_genres = data.results[1].genres;
-			const itme2_genres = data.results[2].genres;
-			backgroundImage0.src = item0.background_image;
-			name0.innerText = item0.name;
-			genre0.innerText = itme0_genres[0].name;
-			const item1 = data.results[1];
-			backgroundImage1.src = item1.background_image;
-			name1.innerText = item1.name;
-			genre1.innerText = itme1_genres[0].name;
-			const item2 = data.results[2];
-			backgroundImage2.src = item2.background_image;
-			name2.innerText = item2.name;
-			genre2.innerText = itme2_genres[0].name;
-		})
-		.catch(error => console.error(error));
-
-
-});
-
+fetch(apiUrl)
+	.then(response => response.json())
+	.then(data => {
+		updateCards(data);
+	})
+	.catch(error => console.error(error));
 
 //add an event listener to search input field
 searchInput.addEventListener('input', () => {
@@ -122,3 +102,23 @@ searchInput.addEventListener('input', () => {
 
 
 });
+
+//add event listener when a genre on the side bar is selected
+function displayGenreData(genreName) {
+	const apiGenre = `https://api.rawg.io/api/games?key=${ApiKey}&genres=${genreName}`;
+	fetch(apiGenre)
+		.then(response => response.json())
+		.then(data => {
+			updateCards(data);
+		});
+}
+
+function displayPopular() {
+	const apiPopular = `https://api.rawg.io/api/games?key=${ApiKey}&ordering=-metacritic`
+	fetch(apiPopular)
+		.then(response => response.json())
+		.then(data => {
+			updateCards(data);
+		})
+		.catch(error => console.error(error));
+}
