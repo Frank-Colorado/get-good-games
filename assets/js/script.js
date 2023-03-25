@@ -102,7 +102,7 @@ searchInput.addEventListener('input', () => {
 
 //add event listener when a genre on the side bar is selected
 function displayGenreData(genreName) {
-	const apiGenre = `https://api.rawg.io/api/games?key=${ApiKey}&genres=${genreName}`;
+	const apiGenre = `${apiUrl}&genres=${genreName}`;
 	fetch(apiGenre)
 		.then(response => response.json())
 		.then(data => {
@@ -119,20 +119,5 @@ function displayPopular() {
 		})
 		.catch(error => console.error(error));
 }
-
-
-
-
-var formdata = new FormData();
-
-var requestOptions = {
-  method: 'GET',
-  redirect: 'follow'
-};
-
-fetch(`https://www.cheapshark.com/api/1.0/games?title=${searchQuery}`, requestOptions)
-  .then(response => response.text())
-  .then(result => console.log(result))
-  .catch(error => console.log('error', error));
 
   
