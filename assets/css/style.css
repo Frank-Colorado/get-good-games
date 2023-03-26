@@ -1,18 +1,26 @@
 /* GENERAL STLYING */
-li  {
-    list-style-type: none;
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
-
 @font-face{
     font-family:"gunship";
     src: url(../fonts/gunshipboldital.ttf);
 }
 
 .gunship-font{
-
-    font-family:gunship;
+    font-family: "gunship";
     color:#ea526f; 
-    font-size: 25px; 
+    font-size: 20px;
+}
+
+.lg-font{
+    font-size: 30px;
+}
+
+li  {
+    list-style-type: none;
 }
 
 /* HEADER-NAVBAR STYLING */
@@ -29,30 +37,9 @@ li  {
     margin-right: 50px;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.side-navbar a {
-    font-family: gunship;
-    color: #ea526f;
-}
-
 .container-fluid .search-input {
     width: 15%;
     position:relative;
-   
-   
 }
 
 .search-input .icon {
@@ -66,3 +53,31 @@ li  {
     color: purple;
     cursor: pointer;
 }
+
+/* SIDEBAR STYLING */
+
+.sidebar ul li {
+    margin-top: 10px;
+    position: relative;
+}
+
+.sidebar ul li::after {
+    content: "";
+    height: 3px;
+    width: 0%;
+    background: #ea526f;
+    position: absolute;
+    left: 0;
+    bottom: -10px;
+    transition: 1s;
+}
+
+.sidebar ul li:hover::after {
+   width: 60%;
+}
+
+.color-change li a:hover {
+    color:aliceblue!important;
+    cursor: pointer;
+ }
+ 
