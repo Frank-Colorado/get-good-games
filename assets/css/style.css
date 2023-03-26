@@ -22,7 +22,9 @@ li  {
 }
 
 .header-img {
-    width: 150px;
+    position: absolute;
+    margin-left:20px;
+    width: 40px;
 }
 
 .search-input {
