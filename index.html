@@ -16,7 +16,7 @@
 
 </head>
 
-<div></div>
+<div> </div>
 
 <body class="bg-black">
 
@@ -27,7 +27,7 @@
 
       <div class="container-fluid">
 
-        <a class="navbar-brand gunship-font">Get Good Games</a>
+        <a class="navbar-brand gunship-font lg-font">Get Good Games</a>
 
         <img class="header-img" src="https://i.gifer.com/Paz.gif"/>
 
@@ -60,8 +60,6 @@
     </nav>
 
   </header>
-
-
   <!--Main Navigation-->
 
   <!--Main Layout-->
@@ -73,15 +71,15 @@
       <div class="row ms-2 me-5">
 
         <!--Side Navbar-->
-        <div class="col-md-2 side-navbar">
+        <div class="col-md-2 sidebar gunship-font">
 
           <div class="pb-5">
 
             <a> HOME </a>
 
-            <ul>
+            <ul class="color-change">
               <li>
-                <a id="genre_action"> Popular </a>
+                <a id="top_rated" onclick="displayPopular()"> Top Rated </a> 
               </li>
             </ul>
 
@@ -91,38 +89,38 @@
 
             <a> GENRES </a>
 
-            <ul>
+            <ul class="color-change">
 
               <li> 
-                <a id="genre_action"> Action </a>
+                <a id="genre_action" onclick="displayGenreData('action')"> Action </a>
               </li>
 
               <li> 
-                <a id="genre_strategy"> Strategy </a>
+                <a id="genre_strategy" onclick="displayGenreData('strategy')"> Strategy </a>
               </li>
 
               <li> 
-                <a id="genre_rpg"> RPG </a>
+                <a id="genre_rpg" onclick="displayGenreData('role-playing-games-rpg')"> RPG </a>
               </li>
 
               <li> 
-                <a id="genre_shooter"> Shooter </a>
+                <a id="genre_shooter" onclick="displayGenreData('shooter')"> Shooter </a>
               </li>
 
               <li> 
-                <a id="genre_adventure"> Adventure </a>
+                <a id="genre_adventure" onclick="displayGenreData('adventure')"> Adventure </a>
               </li>
 
               <li> 
-                <a id="genre_Puzzle"> Puzzle </a>
+                <a id="genre_Puzzle" onclick="displayGenreData('puzzle')"> Puzzle </a>
               </li>
 
               <li> 
-                <a id="genre_Racing"> Racing </a>
+                <a id="genre_Racing" onclick="displayGenreData('racing')"> Racing </a>
               </li>
 
               <li> 
-                <a id="genre_Sports"> Sports </a>
+                <a id="genre_Sports" onclick="displayGenreData('sports')"> Sports </a>
               </li>
 
             </ul>
@@ -136,9 +134,9 @@
           
           <section class="mb-10 text-center">
 
-            <h2 class="fw-bold mb-7 text-center gunship-font"> Get Good Games </h2>
+            <h2 class="fw-bold mb-7 text-center gunship-font"> Here's What's Good... </h2>
             
-            <div class="row gx-lg-5">
+            <div class="row gx-lg-5" id="rows">
     
               <!--First Column-->
               <div class="col-lg-4 col-md-12 mb-6 mb-lg-0" id="card_0">
