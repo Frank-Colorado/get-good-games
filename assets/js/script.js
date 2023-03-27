@@ -62,8 +62,13 @@ function fillCards() {
 								fetch(apiCheapSharkDealLookUp)
 									.then(response => response.json())
 									.then(data => {
-										//console.log(data)
 										console.log(data)
+										const cheapestPriceEver = data.cheapestPriceEver.price;
+										const dealPrice = data.deals[0].price;
+										const retailPrice = data.deals[0].retailPrice; 
+										console.log(cheapestPriceEver);
+										console.log(dealPrice);
+										console.log(retailPrice);
 
 									})
 									.catch(error => console.error(error));
@@ -117,6 +122,46 @@ function displayPopular() {
 					cardImgElement.src = backgroundImage;
 
 					i++;
+					// const used to make a unique url for cheapshark to run an api
+					const encodedGameTitle = encodeURIComponent(gameTitle);
+					const apiCheapSharkUrl = `https://www.cheapshark.com/api/1.0/games?title=${encodedGameTitle}&exact=0&limit=1`;
+					//console.log(apiCheapSharkUrl);
+
+
+					//fetches Cheapshark data via an api call
+					fetch(apiCheapSharkUrl)
+						.then(response => response.json())
+						.then(data => {
+							// loop through each game
+							for (let i = 0; i < data.length; i++) {
+								const game = data[i];
+								const gameId = game.gameID;
+								//console.log(game)
+								//console.log(gameId)
+
+
+								//const used to make a unique url for cheapshark searches its data based on previous gameID
+								const apiCheapSharkDealLookUp = `https://www.cheapshark.com/api/1.0/games?id=${gameId}`;
+								//console.log(apiCheapSharkDealLookUp);
+
+
+
+								fetch(apiCheapSharkDealLookUp)
+									.then(response => response.json())
+									.then(data => {
+										console.log(data)
+										const cheapestPriceEver = data.cheapestPriceEver.price;
+										const dealPrice = data.deals[0].price;
+										const retailPrice = data.deals[0].retailPrice; 
+										console.log(cheapestPriceEver);
+										console.log(dealPrice);
+										console.log(retailPrice);
+
+									})
+									.catch(error => console.error(error));
+							}
+
+						})
 				}
 			}
 
@@ -167,6 +212,46 @@ function displayGenreData(genreName) {
 					const cardImgElement = document.getElementById(`card_Img_${i}`);
 					cardImgElement.src = backgroundImage;
 					i++;
+					// const used to make a unique url for cheapshark to run an api
+					const encodedGameTitle = encodeURIComponent(gameTitle);
+					const apiCheapSharkUrl = `https://www.cheapshark.com/api/1.0/games?title=${encodedGameTitle}&exact=0&limit=1`;
+					//console.log(apiCheapSharkUrl);
+
+
+					//fetches Cheapshark data via an api call
+					fetch(apiCheapSharkUrl)
+						.then(response => response.json())
+						.then(data => {
+							// loop through each game
+							for (let i = 0; i < data.length; i++) {
+								const game = data[i];
+								const gameId = game.gameID;
+								//console.log(game)
+								//console.log(gameId)
+
+
+								//const used to make a unique url for cheapshark searches its data based on previous gameID
+								const apiCheapSharkDealLookUp = `https://www.cheapshark.com/api/1.0/games?id=${gameId}`;
+								//console.log(apiCheapSharkDealLookUp);
+
+
+
+								fetch(apiCheapSharkDealLookUp)
+									.then(response => response.json())
+									.then(data => {
+										console.log(data)
+										const cheapestPriceEver = data.cheapestPriceEver.price;
+										const dealPrice = data.deals[0].price;
+										const retailPrice = data.deals[0].retailPrice; 
+										console.log(cheapestPriceEver);
+										console.log(dealPrice);
+										console.log(retailPrice);
+
+									})
+									.catch(error => console.error(error));
+							}
+
+						})
 				}
 				// Unhide card_1 and card_2
 				const card1 = document.getElementById('card_1');
