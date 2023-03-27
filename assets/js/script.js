@@ -1,138 +1,214 @@
-let searchQuery = '';
-const searchInput = document.getElementById('search_input');
-const suggestionDropdown = document.getElementById('suggestions');
-const ApiKey = ('a29e01702f3d4aa2a58af885563c92b7')
-const cardTitle = document.querySelector('.card-title');
-const cardImg = document.querySelector('#card_Img_0');
-const cardGenre = document.querySelector('#genre_0')
-const apiUrl = `https://api.rawg.io/api/games?key=${ApiKey}&search=${searchQuery}&page_size=5&platforms=4`
-const backgroundImage0 = document.getElementById('card_Img_0');
-const name0 = document.getElementById('card_title_0');
-const genre0 = document.getElementById('genre_0');
-const backgroundImage1 = document.getElementById('card_Img_1');
-const name1 = document.getElementById('card_title_1');
-const genre1 = document.getElementById('genre_1');
-const backgroundImage2 = document.getElementById('card_Img_2');
-const name2 = document.getElementById('card_title_2');
-const genre2 = document.getElementById('genre_2');
+const apiKey = 'a29e01702f3d4aa2a58af885563c92b7';
+const apiUrl = `https://api.rawg.io/api/games?key=${apiKey}&platforms=4`;
 
-//event listener that updates the page on load 
-window.addEventListener('load', displayPopular);
-
-function updateCards(data) {
-	if (data.results) {
-		const item0 = data.results[0];
-		const itme0_genres = data.results[0].genres;
-		const itme1_genres = data.results[1].genres;
-		const itme2_genres = data.results[2].genres;
-		backgroundImage0.src = item0.background_image;
-		name0.innerText = item0.name;
-		genre0.innerText = itme0_genres[0].name;
-		const item1 = data.results[1];
-		backgroundImage1.src = item1.background_image;
-		name1.innerText = item1.name;
-		genre1.innerText = itme1_genres[0].name;
-		const item2 = data.results[2];
-		backgroundImage2.src = item2.background_image;
-		name2.innerText = item2.name;
-		genre2.innerText = itme2_genres[0].name;
-	}
-}
-
-fetch(apiUrl)
-	.then(response => response.json())
-	.then(data => {
-		updateCards(data);
-	})
-	.catch(error => console.error(error));
-
-//add an event listener to search input field
-searchInput.addEventListener('input', () => {
-	//gets the search query from the input field
-	searchQuery = searchInput.value;
-
-
-	//fetches data from the API, converts the response to JSON
+function fillCards() {
 	fetch(apiUrl)
 		.then(response => response.json())
 		.then(data => {
-			const games = data.results;
-			const filteredGames = games.filter(game => game.name.toLowerCase().includes(searchQuery.toLowerCase()));
-			const gameImg = data.results[0].background_image;
-			const gameGenre = data.results[0].genres[0].name;
-			const centerRow = document.querySelector('#rows')
-			// clear the suggestion dropdown if the search query is empty
-			if (searchQuery === '') {
-				suggestionDropdown.innerHTML = '';
-			} else {
-				// create the suggestion list
-				suggestionDropdown.innerHTML = '';
-				const suggestionList = document.createElement('ul');
-				games.forEach(game => {
-					const suggestionItem = document.createElement('li');
-					suggestionItem.innerText = game.name;
-					suggestionItem.addEventListener('click', () => {
-						const cardToRemove1 = document.querySelector('#card_1');
-						if (cardToRemove1) {
-							cardToRemove1.remove();
-						}
-						const cardToRemove2 = document.querySelector('#card_2');
-						if (cardToRemove2) {
-							cardToRemove2.remove();
-						}
-						searchInput.value = game.name; // fill out search input with suggestion text
-						suggestionDropdown.innerHTML = ''; // clear suggestion dropdown
-						cardTitle.innerHTML = game.name; // update the card title with the selected game name
-						cardImg.setAttribute('src', gameImg); //updates the picture
-						cardGenre.innerHTML = gameGenre; // updates the genre
-						centerRow.style.justifyContent = "center";
+			const gameTitles = [];
+			const genres = [];
+			const backgroundImages = [];
 
-					});
-					suggestionList.appendChild(suggestionItem); //adds items to list
-				});
-				suggestionDropdown.appendChild(suggestionList); //adds list to sugestion drop down
+			for (let i = 0; i < 3; i++) {
+				const randomIndex = Math.floor(Math.random() * data.results.length);
+				const gameTitle = data.results[randomIndex].name;
+				gameTitles.push(gameTitle);
+
+				const genre = data.results[randomIndex].genres[0].name;
+				genres.push(genre);
+
+				const backgroundImage = data.results[randomIndex].background_image;
+				backgroundImages.push(backgroundImage);
+
+				// Fill in the card data
+				const cardTitleElement = document.getElementById(`card_title_${i}`);
+				cardTitleElement.innerHTML = gameTitle;
+
+				const genreElement = document.getElementById(`genre_${i}`);
+				genreElement.innerHTML = genre;
+
+				const cardImgElement = document.getElementById(`card_Img_${i}`);
+				cardImgElement.src = backgroundImage;
 			}
-			console.log(filteredGames);
-		})
-		//logs any errors in the console 
-		.catch(error => console.error(error));
-
-
-});
-
-//add event listener when a genre on the side bar is selected
-function displayGenreData(genreName) {
-	const apiGenre = `https://api.rawg.io/api/games?key=${ApiKey}&genres=${genreName}`;
-	fetch(apiGenre)
-		.then(response => response.json())
-		.then(data => {
-			updateCards(data);
 		});
 }
 
+fillCards(apiUrl);
+
+
+
+// fetches RAWG data based on the Top rated
 function displayPopular() {
-	const apiPopular = `${apiUrl}&ordering=-metacritic`
-	fetch(apiPopular)
+	const apiUrlRated = `${apiUrl}&ordering=-metacritic&dates=2022-01-01,2023-01-01`;
+	fetch(apiUrlRated)
 		.then(response => response.json())
 		.then(data => {
-			updateCards(data);
-		})
-		.catch(error => console.error(error));
+			console.log(data);
+			const gameTitles = [];
+			const genres = [];
+			const backgroundImages = [];
+
+			for (let i = 0; i < 3; i++) {
+				const gameTitle = data.results[i].name;
+				gameTitles.push(gameTitle);
+
+				const genre = data.results[i].genres[0].name;
+				genres.push(genre);
+
+				const backgroundImage = data.results[i].background_image;
+				backgroundImages.push(backgroundImage);
+
+				// Fill in the card data
+				const cardTitleElement = document.getElementById(`card_title_${i}`);
+				cardTitleElement.innerHTML = gameTitle;
+
+				const genreElement = document.getElementById(`genre_${i}`);
+				genreElement.innerHTML = genre;
+
+				const cardImgElement = document.getElementById(`card_Img_${i}`);
+				cardImgElement.src = backgroundImage;
+			}
+			// Unhide card_1 and card_2
+			const card1 = document.getElementById('card_1');
+			if (card1) {
+				card1.style.display = 'block';
+			}
+			const card2 = document.getElementById('card_2');
+			if (card2) {
+				card2.style.display = 'block';
+			}
+
+		});
+
 }
 
+// fetches RAWG data based on the selcted genre	
+function displayGenreData(genreName) {
+	const apiUrlGenre = `${apiUrl}&genres=${genreName}`;
+	fetch(apiUrlGenre)
+		.then(response => response.json())
+		.then(data => {
+			const gameTitles = [];
+			const genres = [];
+			const backgroundImages = [];
 
+			for (let i = 0; i < 3; i++) {
+				const gameTitle = data.results[i].name;
+				gameTitles.push(gameTitle);
 
+				const genre = data.results[i].genres[0].name;
+				genres.push(genre);
 
-var formdata = new FormData();
+				const backgroundImage = data.results[i].background_image;
+				backgroundImages.push(backgroundImage);
 
-var requestOptions = {
-  method: 'GET',
-  redirect: 'follow'
-};
+				// Fill in the card data
+				const cardTitleElement = document.getElementById(`card_title_${i}`);
+				cardTitleElement.innerHTML = gameTitle;
 
-fetch(`https://www.cheapshark.com/api/1.0/games?title=${searchQuery}`, requestOptions)
-  .then(response => response.text())
-  .then(result => console.log(result))
-  .catch(error => console.log('error', error));
+				const genreElement = document.getElementById(`genre_${i}`);
+				genreElement.innerHTML = genre;
 
-  
+				const cardImgElement = document.getElementById(`card_Img_${i}`);
+				cardImgElement.src = backgroundImage;
+			}
+			// Unhide card_1 and card_2
+			const card1 = document.getElementById('card_1');
+			if (card1) {
+				card1.style.display = 'block';
+			}
+			const card2 = document.getElementById('card_2');
+			if (card2) {
+				card2.style.display = 'block';
+			}
+
+		});
+
+}
+
+const searchInput = document.getElementById('search_input');
+const suggestions = document.getElementById('suggestions');
+
+function handleSuggestionClick(event) {
+	const suggestionText = event.target.innerText;
+	console.log(`You clicked on suggestion: ${suggestionText}`);
+
+	// Clear the suggestions div
+	suggestions.innerHTML = '';
+
+	// Clear the search input
+	searchInput.value = '';
+
+	// Fetch search result data
+	const query = suggestionText;
+	const apiUrl = `https://api.rawg.io/api/games?key=${apiKey}&search=${query}&platforms=4`;
+	fetch(apiUrl)
+		.then(response => response.json())
+		.then(data => {
+			// Populate the first card with the search result data
+			populateFirstCard(data);
+		})
+		.catch(error => {
+			console.error(error);
+		});
+}
+
+searchInput.addEventListener('input', () => {
+	const query = searchInput.value;
+	const apiUrl = `https://api.rawg.io/api/games?key=${apiKey}&search=${query}&platforms=4`;
+
+	if (query === '') {
+		suggestions.innerHTML = '';
+		return;
+	}
+
+	fetch(apiUrl)
+		.then(response => response.json())
+		.then(data => {
+			console.log(data);
+
+			suggestions.innerHTML = '';
+
+			// Loop through the results and display up to 5 suggestions
+			for (let i = 0; i < Math.min(data.results.length, 5); i++) {
+				const result = data.results[i];
+				const suggestion = document.createElement('div');
+				suggestion.classList.add('suggestion');
+				suggestion.innerHTML = result.name;
+				suggestion.addEventListener('click', handleSuggestionClick);
+				suggestions.appendChild(suggestion);
+			}
+		})
+		.catch(error => {
+			console.error(error);
+		});
+});
+
+function populateFirstCard(data) {
+	const gameTitle = data.results[0].name;
+	const genre = data.results[0].genres[0].name;
+	const backgroundImage = data.results[0].background_image;
+
+	// Hide card_1 and card_2 if they exist
+	const card1 = document.getElementById('card_1');
+	if (card1) {
+		card1.style.display = 'none';
+	}
+	const card2 = document.getElementById('card_2');
+	if (card2) {
+		card2.style.display = 'none';
+	}
+
+	// Fill in the card data
+	const cardTitleElement = document.getElementById('card_title_0');
+	cardTitleElement.innerHTML = gameTitle;
+
+	const genreElement = document.getElementById('genre_0');
+	genreElement.innerHTML = genre;
+
+	const cardImgElement = document.getElementById('card_Img_0');
+	cardImgElement.src = backgroundImage;
+
+	const centerRow = document.getElementById('card_row');
+	centerRow.style.justifyContent = 'center';
+}
