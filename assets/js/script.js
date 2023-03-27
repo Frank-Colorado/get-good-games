@@ -41,6 +41,7 @@ function fillCards() {
 					//console.log(apiCheapSharkUrl);
 
 
+
 					//fetches Cheapshark data via an api call
 					fetch(apiCheapSharkUrl)
 						.then(response => response.json())
@@ -58,27 +59,49 @@ function fillCards() {
 								//console.log(apiCheapSharkDealLookUp);
 
 
+								// select all the modal buttons
+								const modalButtons = document.querySelectorAll('.modal-button');
 
-								fetch(apiCheapSharkDealLookUp)
-									.then(response => response.json())
-									.then(data => {
-										console.log(data)
-										const cheapestPriceEver = data.cheapestPriceEver.price;
-										const dealPrice = data.deals[0].price;
-										const retailPrice = data.deals[0].retailPrice; 
-										console.log(cheapestPriceEver);
-										console.log(dealPrice);
-										console.log(retailPrice);
+								// iterate through the buttons and attach event listener to each one
+								modalButtons.forEach(button => {
+									button.addEventListener('click', () => {
+										// get the data-mdb-target attribute value, which is the ID of the modal to be displayed
+										const targetModalId = button.getAttribute('data-mdb-target');
 
+										// fetch game prices and links
+										fetch(apiCheapSharkDealLookUp)
+											.then(response => response.json())
+											.then(data => {
+												// update content of modal elements with game prices and links
+												const dealPriceElement = document.querySelector(`${targetModalId} #dealPrice`);
+												dealPriceElement.textContent = data.deals[0].price;
+
+												const retailPriceElement = document.querySelector(`${targetModalId} #retailPrice`);
+												retailPriceElement.textContent = data.deals[0].retailPrice;
+
+												const dealLinkElement = document.querySelector(`${targetModalId} #dealLink`);
+												dealLinkElement.href = `https://www.cheapshark.com/redirect?dealID=${data.deals[0].dealID}`;
+
+												// select the modal element and display it
+												const modal = document.querySelector(targetModalId);
+												modal.style.display = 'block';
+											})
+											.catch(error => {
+												console.error(error);
+											});
 									})
-									.catch(error => console.error(error));
+								})
 							}
-
 						})
 				}
 			}
 		})
+
 }
+
+
+
+
 
 
 
@@ -152,7 +175,7 @@ function displayPopular() {
 										console.log(data)
 										const cheapestPriceEver = data.cheapestPriceEver.price;
 										const dealPrice = data.deals[0].price;
-										const retailPrice = data.deals[0].retailPrice; 
+										const retailPrice = data.deals[0].retailPrice;
 										console.log(cheapestPriceEver);
 										console.log(dealPrice);
 										console.log(retailPrice);
@@ -242,7 +265,7 @@ function displayGenreData(genreName) {
 										console.log(data)
 										const cheapestPriceEver = data.cheapestPriceEver.price;
 										const dealPrice = data.deals[0].price;
-										const retailPrice = data.deals[0].retailPrice; 
+										const retailPrice = data.deals[0].retailPrice;
 										console.log(cheapestPriceEver);
 										console.log(dealPrice);
 										console.log(retailPrice);
