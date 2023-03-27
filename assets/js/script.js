@@ -8,30 +8,37 @@ function fillCards() {
 			const gameTitles = [];
 			const genres = [];
 			const backgroundImages = [];
+			const usedTitles = [];
+			let i = 0;
 
-			for (let i = 0; i < 3; i++) {
+			while (gameTitles.length < 3) {
 				const randomIndex = Math.floor(Math.random() * data.results.length);
 				const gameTitle = data.results[randomIndex].name;
-				gameTitles.push(gameTitle);
 
-				const genre = data.results[randomIndex].genres[0].name;
-				genres.push(genre);
+				if (!usedTitles.includes(gameTitle)) {
+					usedTitles.push(gameTitle);
+					gameTitles.push(gameTitle);
+					const genre = data.results[randomIndex].genres[0].name;
+					genres.push(genre);
+					const backgroundImage = data.results[randomIndex].background_image;
+					backgroundImages.push(backgroundImage);
 
-				const backgroundImage = data.results[randomIndex].background_image;
-				backgroundImages.push(backgroundImage);
+					// Fill in the card data
+					const cardTitleElement = document.getElementById(`card_title_${i}`);
+					cardTitleElement.innerHTML = gameTitle;
 
-				// Fill in the card data
-				const cardTitleElement = document.getElementById(`card_title_${i}`);
-				cardTitleElement.innerHTML = gameTitle;
+					const genreElement = document.getElementById(`genre_${i}`);
+					genreElement.innerHTML = genre;
 
-				const genreElement = document.getElementById(`genre_${i}`);
-				genreElement.innerHTML = genre;
+					const cardImgElement = document.getElementById(`card_Img_${i}`);
+					cardImgElement.src = backgroundImage;
 
-				const cardImgElement = document.getElementById(`card_Img_${i}`);
-				cardImgElement.src = backgroundImage;
+					i++;
+				}
 			}
 		});
 }
+
 
 fillCards(apiUrl);
 
@@ -43,31 +50,38 @@ function displayPopular() {
 	fetch(apiUrlRated)
 		.then(response => response.json())
 		.then(data => {
-			console.log(data);
 			const gameTitles = [];
 			const genres = [];
 			const backgroundImages = [];
+			const usedTitles = [];
+			let i = 0;
 
-			for (let i = 0; i < 3; i++) {
-				const gameTitle = data.results[i].name;
-				gameTitles.push(gameTitle);
+			while (gameTitles.length < 3) {
+				const randomIndex = Math.floor(Math.random() * data.results.length);
+				const gameTitle = data.results[randomIndex].name;
 
-				const genre = data.results[i].genres[0].name;
-				genres.push(genre);
+				if (!usedTitles.includes(gameTitle)) {
+					usedTitles.push(gameTitle);
+					gameTitles.push(gameTitle);
+					const genre = data.results[randomIndex].genres[0].name;
+					genres.push(genre);
+					const backgroundImage = data.results[randomIndex].background_image;
+					backgroundImages.push(backgroundImage);
 
-				const backgroundImage = data.results[i].background_image;
-				backgroundImages.push(backgroundImage);
+					// Fill in the card data
+					const cardTitleElement = document.getElementById(`card_title_${i}`);
+					cardTitleElement.innerHTML = gameTitle;
 
-				// Fill in the card data
-				const cardTitleElement = document.getElementById(`card_title_${i}`);
-				cardTitleElement.innerHTML = gameTitle;
+					const genreElement = document.getElementById(`genre_${i}`);
+					genreElement.innerHTML = genre;
 
-				const genreElement = document.getElementById(`genre_${i}`);
-				genreElement.innerHTML = genre;
+					const cardImgElement = document.getElementById(`card_Img_${i}`);
+					cardImgElement.src = backgroundImage;
 
-				const cardImgElement = document.getElementById(`card_Img_${i}`);
-				cardImgElement.src = backgroundImage;
+					i++;
+				}
 			}
+
 			// Unhide card_1 and card_2
 			const card1 = document.getElementById('card_1');
 			if (card1) {
@@ -77,10 +91,9 @@ function displayPopular() {
 			if (card2) {
 				card2.style.display = 'block';
 			}
-
 		});
-
 }
+
 
 // fetches RAWG data based on the selcted genre	
 function displayGenreData(genreName) {
@@ -91,35 +104,41 @@ function displayGenreData(genreName) {
 			const gameTitles = [];
 			const genres = [];
 			const backgroundImages = [];
+			const usedTitles = [];
+			let i = 0;
 
-			for (let i = 0; i < 3; i++) {
-				const gameTitle = data.results[i].name;
-				gameTitles.push(gameTitle);
+			while (gameTitles.length < 3) {
+				const randomIndex = Math.floor(Math.random() * data.results.length);
+				const gameTitle = data.results[randomIndex].name;
 
-				const genre = data.results[i].genres[0].name;
-				genres.push(genre);
+				if (!usedTitles.includes(gameTitle)) {
+					usedTitles.push(gameTitle);
+					gameTitles.push(gameTitle);
+					const genre = data.results[randomIndex].genres[0].name;
+					genres.push(genre);
+					const backgroundImage = data.results[randomIndex].background_image;
+					backgroundImages.push(backgroundImage);
 
-				const backgroundImage = data.results[i].background_image;
-				backgroundImages.push(backgroundImage);
+					// Fill in the card data
+					const cardTitleElement = document.getElementById(`card_title_${i}`);
+					cardTitleElement.innerHTML = gameTitle;
 
-				// Fill in the card data
-				const cardTitleElement = document.getElementById(`card_title_${i}`);
-				cardTitleElement.innerHTML = gameTitle;
+					const genreElement = document.getElementById(`genre_${i}`);
+					genreElement.innerHTML = genre;
 
-				const genreElement = document.getElementById(`genre_${i}`);
-				genreElement.innerHTML = genre;
-
-				const cardImgElement = document.getElementById(`card_Img_${i}`);
-				cardImgElement.src = backgroundImage;
-			}
-			// Unhide card_1 and card_2
-			const card1 = document.getElementById('card_1');
-			if (card1) {
-				card1.style.display = 'block';
-			}
-			const card2 = document.getElementById('card_2');
-			if (card2) {
-				card2.style.display = 'block';
+					const cardImgElement = document.getElementById(`card_Img_${i}`);
+					cardImgElement.src = backgroundImage;
+					i++;
+				}
+				// Unhide card_1 and card_2
+				const card1 = document.getElementById('card_1');
+				if (card1) {
+					card1.style.display = 'block';
+				}
+				const card2 = document.getElementById('card_2');
+				if (card2) {
+					card2.style.display = 'block';
+				}
 			}
 
 		});
