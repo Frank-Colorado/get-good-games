@@ -8,30 +8,80 @@ function fillCards() {
 			const gameTitles = [];
 			const genres = [];
 			const backgroundImages = [];
+			const usedTitles = [];
+			let i = 0;
 
-			for (let i = 0; i < 3; i++) {
+			while (gameTitles.length < 3) {
 				const randomIndex = Math.floor(Math.random() * data.results.length);
 				const gameTitle = data.results[randomIndex].name;
-				gameTitles.push(gameTitle);
 
-				const genre = data.results[randomIndex].genres[0].name;
-				genres.push(genre);
+				if (!usedTitles.includes(gameTitle)) {
+					usedTitles.push(gameTitle);
+					gameTitles.push(gameTitle);
+					const genre = data.results[randomIndex].genres[0].name;
+					genres.push(genre);
+					const backgroundImage = data.results[randomIndex].background_image;
+					backgroundImages.push(backgroundImage);
 
-				const backgroundImage = data.results[randomIndex].background_image;
-				backgroundImages.push(backgroundImage);
+					// Fill in the card data
+					const cardTitleElement = document.getElementById(`card_title_${i}`);
+					cardTitleElement.innerHTML = gameTitle;
 
-				// Fill in the card data
-				const cardTitleElement = document.getElementById(`card_title_${i}`);
-				cardTitleElement.innerHTML = gameTitle;
+					const genreElement = document.getElementById(`genre_${i}`);
+					genreElement.innerHTML = genre;
 
-				const genreElement = document.getElementById(`genre_${i}`);
-				genreElement.innerHTML = genre;
+					const cardImgElement = document.getElementById(`card_Img_${i}`);
+					cardImgElement.src = backgroundImage;
 
-				const cardImgElement = document.getElementById(`card_Img_${i}`);
-				cardImgElement.src = backgroundImage;
+					i++;
+
+					// const used to make a unique url for cheapshark to run an api
+					const encodedGameTitle = encodeURIComponent(gameTitle);
+					const apiCheapSharkUrl = `https://www.cheapshark.com/api/1.0/games?title=${encodedGameTitle}&exact=0&limit=1`;
+					//console.log(apiCheapSharkUrl);
+
+
+					//fetches Cheapshark data via an api call
+					fetch(apiCheapSharkUrl)
+						.then(response => response.json())
+						.then(data => {
+							// loop through each game
+							for (let i = 0; i < data.length; i++) {
+								const game = data[i];
+								const gameId = game.gameID;
+								//console.log(game)
+								//console.log(gameId)
+
+
+								//const used to make a unique url for cheapshark searches its data based on previous gameID
+								const apiCheapSharkDealLookUp = `https://www.cheapshark.com/api/1.0/games?id=${gameId}`;
+								//console.log(apiCheapSharkDealLookUp);
+
+
+
+								fetch(apiCheapSharkDealLookUp)
+									.then(response => response.json())
+									.then(data => {
+										console.log(data)
+										const cheapestPriceEver = data.cheapestPriceEver.price;
+										const dealPrice = data.deals[0].price;
+										const retailPrice = data.deals[0].retailPrice; 
+										console.log(cheapestPriceEver);
+										console.log(dealPrice);
+										console.log(retailPrice);
+
+									})
+									.catch(error => console.error(error));
+							}
+
+						})
+				}
 			}
-		});
+		})
 }
+
+
+
 
 fillCards(apiUrl);
 
@@ -43,31 +93,78 @@ function displayPopular() {
 	fetch(apiUrlRated)
 		.then(response => response.json())
 		.then(data => {
-			console.log(data);
 			const gameTitles = [];
 			const genres = [];
 			const backgroundImages = [];
+			const usedTitles = [];
+			let i = 0;
 
-			for (let i = 0; i < 3; i++) {
-				const gameTitle = data.results[i].name;
-				gameTitles.push(gameTitle);
+			while (gameTitles.length < 3) {
+				const randomIndex = Math.floor(Math.random() * data.results.length);
+				const gameTitle = data.results[randomIndex].name;
 
-				const genre = data.results[i].genres[0].name;
-				genres.push(genre);
+				if (!usedTitles.includes(gameTitle)) {
+					usedTitles.push(gameTitle);
+					gameTitles.push(gameTitle);
+					const genre = data.results[randomIndex].genres[0].name;
+					genres.push(genre);
+					const backgroundImage = data.results[randomIndex].background_image;
+					backgroundImages.push(backgroundImage);
 
-				const backgroundImage = data.results[i].background_image;
-				backgroundImages.push(backgroundImage);
+					// Fill in the card data
+					const cardTitleElement = document.getElementById(`card_title_${i}`);
+					cardTitleElement.innerHTML = gameTitle;
 
-				// Fill in the card data
-				const cardTitleElement = document.getElementById(`card_title_${i}`);
-				cardTitleElement.innerHTML = gameTitle;
+					const genreElement = document.getElementById(`genre_${i}`);
+					genreElement.innerHTML = genre;
 
-				const genreElement = document.getElementById(`genre_${i}`);
-				genreElement.innerHTML = genre;
+					const cardImgElement = document.getElementById(`card_Img_${i}`);
+					cardImgElement.src = backgroundImage;
 
-				const cardImgElement = document.getElementById(`card_Img_${i}`);
-				cardImgElement.src = backgroundImage;
+					i++;
+					// const used to make a unique url for cheapshark to run an api
+					const encodedGameTitle = encodeURIComponent(gameTitle);
+					const apiCheapSharkUrl = `https://www.cheapshark.com/api/1.0/games?title=${encodedGameTitle}&exact=0&limit=1`;
+					//console.log(apiCheapSharkUrl);
+
+
+					//fetches Cheapshark data via an api call
+					fetch(apiCheapSharkUrl)
+						.then(response => response.json())
+						.then(data => {
+							// loop through each game
+							for (let i = 0; i < data.length; i++) {
+								const game = data[i];
+								const gameId = game.gameID;
+								//console.log(game)
+								//console.log(gameId)
+
+
+								//const used to make a unique url for cheapshark searches its data based on previous gameID
+								const apiCheapSharkDealLookUp = `https://www.cheapshark.com/api/1.0/games?id=${gameId}`;
+								//console.log(apiCheapSharkDealLookUp);
+
+
+
+								fetch(apiCheapSharkDealLookUp)
+									.then(response => response.json())
+									.then(data => {
+										console.log(data)
+										const cheapestPriceEver = data.cheapestPriceEver.price;
+										const dealPrice = data.deals[0].price;
+										const retailPrice = data.deals[0].retailPrice; 
+										console.log(cheapestPriceEver);
+										console.log(dealPrice);
+										console.log(retailPrice);
+
+									})
+									.catch(error => console.error(error));
+							}
+
+						})
+				}
 			}
+
 			// Unhide card_1 and card_2
 			const card1 = document.getElementById('card_1');
 			if (card1) {
@@ -77,10 +174,9 @@ function displayPopular() {
 			if (card2) {
 				card2.style.display = 'block';
 			}
-
 		});
-
 }
+
 
 // fetches RAWG data based on the selcted genre	
 function displayGenreData(genreName) {
@@ -91,35 +187,81 @@ function displayGenreData(genreName) {
 			const gameTitles = [];
 			const genres = [];
 			const backgroundImages = [];
+			const usedTitles = [];
+			let i = 0;
 
-			for (let i = 0; i < 3; i++) {
-				const gameTitle = data.results[i].name;
-				gameTitles.push(gameTitle);
+			while (gameTitles.length < 3) {
+				const randomIndex = Math.floor(Math.random() * data.results.length);
+				const gameTitle = data.results[randomIndex].name;
 
-				const genre = data.results[i].genres[0].name;
-				genres.push(genre);
+				if (!usedTitles.includes(gameTitle)) {
+					usedTitles.push(gameTitle);
+					gameTitles.push(gameTitle);
+					const genre = data.results[randomIndex].genres[0].name;
+					genres.push(genre);
+					const backgroundImage = data.results[randomIndex].background_image;
+					backgroundImages.push(backgroundImage);
 
-				const backgroundImage = data.results[i].background_image;
-				backgroundImages.push(backgroundImage);
+					// Fill in the card data
+					const cardTitleElement = document.getElementById(`card_title_${i}`);
+					cardTitleElement.innerHTML = gameTitle;
 
-				// Fill in the card data
-				const cardTitleElement = document.getElementById(`card_title_${i}`);
-				cardTitleElement.innerHTML = gameTitle;
+					const genreElement = document.getElementById(`genre_${i}`);
+					genreElement.innerHTML = genre;
 
-				const genreElement = document.getElementById(`genre_${i}`);
-				genreElement.innerHTML = genre;
+					const cardImgElement = document.getElementById(`card_Img_${i}`);
+					cardImgElement.src = backgroundImage;
+					i++;
+					// const used to make a unique url for cheapshark to run an api
+					const encodedGameTitle = encodeURIComponent(gameTitle);
+					const apiCheapSharkUrl = `https://www.cheapshark.com/api/1.0/games?title=${encodedGameTitle}&exact=0&limit=1`;
+					//console.log(apiCheapSharkUrl);
 
-				const cardImgElement = document.getElementById(`card_Img_${i}`);
-				cardImgElement.src = backgroundImage;
-			}
-			// Unhide card_1 and card_2
-			const card1 = document.getElementById('card_1');
-			if (card1) {
-				card1.style.display = 'block';
-			}
-			const card2 = document.getElementById('card_2');
-			if (card2) {
-				card2.style.display = 'block';
+
+					//fetches Cheapshark data via an api call
+					fetch(apiCheapSharkUrl)
+						.then(response => response.json())
+						.then(data => {
+							// loop through each game
+							for (let i = 0; i < data.length; i++) {
+								const game = data[i];
+								const gameId = game.gameID;
+								//console.log(game)
+								//console.log(gameId)
+
+
+								//const used to make a unique url for cheapshark searches its data based on previous gameID
+								const apiCheapSharkDealLookUp = `https://www.cheapshark.com/api/1.0/games?id=${gameId}`;
+								//console.log(apiCheapSharkDealLookUp);
+
+
+
+								fetch(apiCheapSharkDealLookUp)
+									.then(response => response.json())
+									.then(data => {
+										console.log(data)
+										const cheapestPriceEver = data.cheapestPriceEver.price;
+										const dealPrice = data.deals[0].price;
+										const retailPrice = data.deals[0].retailPrice; 
+										console.log(cheapestPriceEver);
+										console.log(dealPrice);
+										console.log(retailPrice);
+
+									})
+									.catch(error => console.error(error));
+							}
+
+						})
+				}
+				// Unhide card_1 and card_2
+				const card1 = document.getElementById('card_1');
+				if (card1) {
+					card1.style.display = 'block';
+				}
+				const card2 = document.getElementById('card_2');
+				if (card2) {
+					card2.style.display = 'block';
+				}
 			}
 
 		});
@@ -212,3 +354,5 @@ function populateFirstCard(data) {
 	const centerRow = document.getElementById('card_row');
 	centerRow.style.justifyContent = 'center';
 }
+
+
