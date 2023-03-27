@@ -22,6 +22,24 @@
 li  {
     list-style-type: none;
 }
+ 
+.bg-red {
+    background-color: #ea526f;
+}
+.white-font {
+    color: white;
+}
+
+.btn {
+    background-color: bg-light
+}
+
+h5 {
+    color:#ea526f; 
+    padding-left: 140px;
+}
+
+
 
 /* HEADER-NAVBAR STYLING */
 
