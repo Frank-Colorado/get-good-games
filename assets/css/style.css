@@ -27,13 +27,17 @@ li  {
     background-color: #ea526f;
 }
 .white-font {
-    color: white!important;
+    color: white;
 }
 
 .btn {
     background-color: bg-light
 }
 
+h5 {
+    color:#ea526f; 
+    padding-left: 140px;
+}
 
 
 
