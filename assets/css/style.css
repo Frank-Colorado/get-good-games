@@ -105,6 +105,16 @@ h5 {
     cursor: pointer;
 
  }
+
+ /* MODAL STYLING */
+
+ .modal-content {
+    background-color: black;
+ }
+
+ .modal-content a {
+    color:#ea526f;
+ }
  
  /* MEDIA QUERIES FOR HEADER NAVBAR */
 
