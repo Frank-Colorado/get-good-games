@@ -4,6 +4,8 @@ const apiUrl = `https://api.rawg.io/api/games?key=${apiKey}&platforms=4`;
 // SEARCH BAR VARIABLES
 const searchInput = document.getElementById("search_input");
 const suggestionsList = document.getElementById("suggestions");
+// MAIN CONTENT VARIABLES
+const cardsDiv = getElementById("gameCards");
 
 // This is an asynchronous function called 'callRawgApi'
 const callRawgAPI = async (queryParam) => {
