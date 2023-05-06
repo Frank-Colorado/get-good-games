@@ -98,7 +98,10 @@ h5 {
   width: 60%;
 }
 
-.color-change li a:hover {
+a {
+  color: #ea526f;
+}
+a:hover {
   color: aliceblue !important;
   cursor: pointer;
 }
