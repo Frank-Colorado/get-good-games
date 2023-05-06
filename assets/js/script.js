@@ -19,6 +19,8 @@ const callRawgAPI = async (queryParam) => {
   }
 };
 
+// This is a function called 'createCard'
+
 // This is a function called 'createSuggestionsDisplay'
 const createSuggestionsDisplay = (data) => {
   // clear suggestions list
@@ -44,7 +46,6 @@ searchInput.addEventListener("input", async () => {
 
 // This is a function that is called when an element with the class 'suggestionItem' is clicked on
 document.addEventListener("click", async (e) => {
-  console.log("clicked");
   if ((target = e.target.closest(".suggestionItem"))) {
     const query = `&search=${target.id}`;
     const data = await callRawgAPI(query);
