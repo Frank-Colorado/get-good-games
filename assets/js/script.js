@@ -5,7 +5,7 @@ const apiUrl = `https://api.rawg.io/api/games?key=${apiKey}&platforms=4`;
 const searchInput = document.getElementById("search_input");
 const suggestionsList = document.getElementById("suggestions");
 // MAIN CONTENT VARIABLES
-const cardsDiv = getElementById("gameCards");
+const cardsDiv = document.getElementById("gameCards");
 
 // This is an asynchronous function called 'callRawgApi'
 const callRawgAPI = async (queryParam) => {
@@ -15,13 +15,39 @@ const callRawgAPI = async (queryParam) => {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
     const data = await response.json();
-    return data;
+    return data.results;
   } catch (error) {
     console.error(error);
   }
 };
 
-// This is a function called 'createCard'
+// game.name, game.background_image, game.esrb_rating.name, game.genres[0].name,
+
+// This is a function called 'createCards'
+const createCards = (data) => {
+  cardsDiv.innerHTML = "";
+  data.forEach((game) => {
+    const gameCard = document.createElement("div");
+    gameCard.classList.add("col-lg-4", "col-md-12", "mb-6");
+    gameCard.innerHTML = `
+    <div class="card">
+    <div
+      class="bg-image hover-overlay ripple"
+      data-mdb-ripple-color="light"
+    >
+      <img src= ${game.background_image} class="img-fluid" />
+    </div>
+
+    <div class="card-body black-font">
+      <h4 id="card_title_0" class="card-title">${game.name}</h4>
+
+      <p class="card-text">
+        Genre: ${game.genres[0].name}
+      </p>
+    `;
+    cardsDiv.appendChild(gameCard);
+  });
+};
 
 // This is a function called 'createSuggestionsDisplay'
 const createSuggestionsDisplay = (data) => {
@@ -55,7 +81,7 @@ document.addEventListener("click", async (e) => {
   } else if ((target = e.target.closest(".genreTab"))) {
     const query = `&genres=${target.id}`;
     const data = await callRawgAPI(query);
-    console.log(data);
+    createCards(data);
   } else {
     console.log("nothing clicked");
   }
