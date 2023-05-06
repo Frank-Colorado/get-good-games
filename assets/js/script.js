@@ -87,4 +87,9 @@ document.addEventListener("click", async (e) => {
   }
 });
 
-callRawgAPI();
+const onLoad = async () => {
+  const data = await callRawgAPI("&metacritic=100");
+  createCards(data);
+};
+
+onLoad();
