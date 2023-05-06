@@ -43,7 +43,7 @@ searchInput.addEventListener("input", async () => {
   createSuggestionsDisplay(data.results);
 });
 
-// This is a functino that is called when an element with the class 'suggestionItem' is clicked on
+// This is a function that is called when an element with the class 'suggestionItem' is clicked on
 document.addEventListener("click", (e) => {
   const target = e.target.closest(".suggestionItem");
   console.log("clicked");
