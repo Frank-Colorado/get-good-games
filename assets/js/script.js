@@ -44,12 +44,19 @@ searchInput.addEventListener("input", async () => {
 });
 
 // This is a function that is called when an element with the class 'suggestionItem' is clicked on
-document.addEventListener("click", (e) => {
-  const target = e.target.closest(".suggestionItem");
+document.addEventListener("click", async (e) => {
   console.log("clicked");
-  if (target) {
+  if ((target = e.target.closest(".suggestionItem"))) {
     const query = `&search=${target.id}`;
-    callRawgAPI(query);
+    const data = await callRawgAPI(query);
+    console.log(data);
+  } else if ((target = e.target.closest(".genreTab"))) {
+    const query = `&genres=${target.id}`;
+    const data = await callRawgAPI(query);
+    console.log(data);
+  } else {
+    console.log("nothing clicked");
   }
 });
+
 callRawgAPI();
