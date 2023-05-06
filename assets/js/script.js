@@ -13,6 +13,7 @@ const callRawgAPI = async (queryParam) => {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
     const data = await response.json();
+    console.log(data);
     return data;
   } catch (error) {
     console.error(error);
@@ -25,23 +26,30 @@ const createSuggestionsDisplay = (data) => {
   suggestionsList.innerHTML = "";
   // create list of 5 suggestions
   const suggestions = data.slice(0, 5);
-  console.log(suggestions);
   // create list item
   suggestions.forEach((suggestion) => {
     const newSuggestion = document.createElement("li");
     newSuggestion.id = suggestion.name;
-    console.log(suggestion.name);
     newSuggestion.innerHTML = suggestion.name;
     newSuggestion.className = "suggestionItem";
     suggestionsList.appendChild(newSuggestion);
   });
 };
 
-// This is an asynchronous function that is called when any input event happens to 'searchInput'
+// This is an asynchronous function that is called when an input event happens to 'searchInput'
 searchInput.addEventListener("input", async () => {
   const query = `&search=${searchInput.value}`;
   const data = await callRawgAPI(query);
   createSuggestionsDisplay(data.results);
 });
 
+// This is a functino that is called when an element with the class 'suggestionItem' is clicked on
+document.addEventListener("click", (e) => {
+  const target = e.target.closest(".suggestionItem");
+  console.log("clicked");
+  if (target) {
+    const query = `&search=${target.id}`;
+    callRawgAPI(query);
+  }
+});
 callRawgAPI();
