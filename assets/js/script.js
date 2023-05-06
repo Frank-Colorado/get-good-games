@@ -19,10 +19,29 @@ const callRawgAPI = async (queryParam) => {
   }
 };
 
+// This is a function called 'createSuggestionsDisplay'
+const createSuggestionsDisplay = (data) => {
+  // clear suggestions list
+  suggestionsList.innerHTML = "";
+  // create list of 5 suggestions
+  const suggestions = data.slice(0, 5);
+  console.log(suggestions);
+  // create list item
+  suggestions.forEach((suggestion) => {
+    const newSuggestion = document.createElement("li");
+    newSuggestion.id = suggestion.name;
+    console.log(suggestion.name);
+    newSuggestion.innerHTML = suggestion.name;
+    newSuggestion.className = "suggestionItem";
+    suggestionsList.appendChild(newSuggestion);
+  });
+};
+
 // This is an asynchronous function that is called when any input event happens to 'searchInput'
 searchInput.addEventListener("input", async () => {
   const query = `&search=${searchInput.value}`;
   const data = await callRawgAPI(query);
+  createSuggestionsDisplay(data.results);
 });
 
 callRawgAPI();
