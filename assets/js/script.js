@@ -21,8 +21,6 @@ const callRawgAPI = async (queryParam) => {
   }
 };
 
-// game.name, game.background_image, game.esrb_rating.name, game.genres[0].name,
-
 // This is a function called 'createCards'
 const createCards = (data) => {
   cardsDiv.innerHTML = "";
