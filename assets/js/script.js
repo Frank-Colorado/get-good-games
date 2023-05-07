@@ -87,9 +87,13 @@ document.addEventListener("click", async (e) => {
   }
 });
 
+// This is a function called 'onLoad'
+// It has 0 parameters
+// It will load popular games into the cards on window load
+// This function will also be called when clicking on the 'popular' tab
 const onLoad = async () => {
   const data = await callRawgAPI("&metacritic=100");
   createCards(data);
 };
 
-onLoad();
+window.load(onLoad());
