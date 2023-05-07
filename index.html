@@ -1,349 +1,147 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>Get Good Games</title>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-  <meta http-equiv="x-ua-compatible" content="ie=edge" />
-  <title>Get Good Games</title>
+    <!-- Font Awesome -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- MDB -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.css"
+      rel="stylesheet"
+    />
 
-<!-- Font Awesome -->
-<link
-  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-  rel="stylesheet"
-/>
-<!-- Google Fonts -->
-<link
-  href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
-  rel="stylesheet"
-/>
-<!-- MDB -->
-<link
-  href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.css"
-  rel="stylesheet"
-/>
+    <link rel="stylesheet" href="./assets/css/style.css" />
+  </head>
 
-  <link rel="stylesheet" href="./assets/css/style.css" />
+  <!-- <div> TESTING </div> -->
 
-</head>
+  <body class="bg-black">
+    <!--Main Navigation-->
+    <header>
+      <nav class="navbar navbar-light bg-light mb-10 text-center">
+        <div class="container-fluid">
+          <a class="navbar-brand gunship-font lg-font">Get Good Games</a>
 
-<!-- <div> TESTING </div> -->
+          <img class="header-img" src="https://i.gifer.com/Paz.gif" />
 
-<body class="bg-black">
+          <div class="search-input">
+            <input
+              id="search_input"
+              type="search"
+              class="form-control rounded"
+              placeholder="Search"
+              aria-label="Search"
+              aria-describedby="search-addon"
+            />
 
-  <!--Main Navigation-->
-  <header>
+            <div id="suggestions"></div>
 
-    <nav class="navbar navbar-light bg-light mb-10 text-center">
+            <div class="input-group-text border-0" id="search-addon">
+              <i class="fas fa-search icon" id="search_icon"></i>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <!--Main Navigation-->
 
+    <!--Main Layout-->
+
+    <main>
       <div class="container-fluid">
-
-        <a class="navbar-brand gunship-font lg-font">Get Good Games</a>
-
-        <img class="header-img" src="https://i.gifer.com/Paz.gif" />
-
-        <div class="search-input">
-
-          <input id="search_input" type="search" class="form-control rounded" placeholder="Search" aria-label="Search"
-            aria-describedby="search-addon" />
-
-          <div id="suggestions">
-
-          </div>
-
-          <div class="input-group-text border-0" id="search-addon">
-
-            <i class="fas fa-search icon" id="search_icon"></i>
-
-          </div>
-
-        </div>
-
-      </div>
-
-      </div>
-
-    </nav>
-
-  </header>
-  <!--Main Navigation-->
-
-  <!--Main Layout-->
-
-  <main>
-
-    <div class="container-fluid">
-
-      <div class="row ms-2 me-5">
-
-        <!--Side Navbar-->
-
-        <div class="col-md-2 sidebar gunship-font">
-
-          <div class="pb-5">
-
-            <h3> HOME </h3>
-
-            <ul class="color-change">
-              <li>
-                <a id="top_rated" onclick="displayPopular()"> Top Rated </a>
-              </li>
-            </ul>
-
-          </div>
-
-          <div class="pt-5">
-
-            <h3> GENRES </h3>
-
-            <ul class="color-change">
-
-              <li>
-                <a id="genre_action" onclick="displayGenreData('action')"> Action </a>
-              </li>
-
-              <li>
-                <a id="genre_strategy" onclick="displayGenreData('strategy')"> Strategy </a>
-              </li>
-
-              <li>
-                <a id="genre_rpg" onclick="displayGenreData('role-playing-games-rpg')"> RPG </a>
-              </li>
-
-              <li>
-                <a id="genre_shooter" onclick="displayGenreData('shooter')"> Shooter </a>
-              </li>
-
-              <li>
-                <a id="genre_adventure" onclick="displayGenreData('adventure')"> Adventure </a>
-              </li>
-
-              <li>
-                <a id="genre_Puzzle" onclick="displayGenreData('puzzle')"> Puzzle </a>
-              </li>
-
-              <li>
-                <a id="genre_Racing" onclick="displayGenreData('racing')"> Racing </a>
-              </li>
-
-              <li>
-                <a id="genre_Sports" onclick="displayGenreData('sports')"> Sports </a>
-              </li>
-
-            </ul>
-
-          </div>
-
-        </div>
-
-        <!--Side Navbar-->
-
-        <!--Main Content-->
-        <div class="col-md-10">
-
-          <section class="mb-10 text-center">
-
-            <h2 class="fw-bold mb-7 text-center gunship-font"> Here's What's Good... </h2>
-
-            <div class="row gx-lg-5" id="rows">
-
-              <!--First Column-->
-              <div class="col-lg-4 col-md-12 mb-6 mb-lg-0" id="card_0">
-
-                <div class="card">
-
-                  <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
-
-                    <img id="card_Img_0" src="https://mdbcdn.b-cdn.net/img/new/standard/nature/111.webp"
-                      class="img-fluid" />
-
-                    <a href="#!">
-                      <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-                    </a>
-
-                  </div>
-
-                  <div class="card-body white-font">
-
-                    <h4 id="card_title_0" class="card-title">Card title</h4>
-
-                    <p class="card-text" id="genre_0">Some quick example text to build on the card title and make up the
-                      bulk of the card's content.</p>
-                    <p id="Sale_Info_0"></p>
-
-                    <!-- Button trigger modal -->
-                    <button type="button" id="modalbutton" class="btn btn-primary bg-red modal-button" data-mdb-toggle="modal"
-                      data-mdb-target="#exampleModal">
-                      Get Deal!
-                    </button>
-                    <!-- Button trigger modal -->
-
-                    <!-- Modal -->
-                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                      aria-hidden="true">
-                      <div class="modal-dialog">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Here Are Your Deals!</h5>
-                            <button type="button" class="btn-close" data-mdb-dismiss="modal"
-                              aria-label="Close"></button>
-                          </div>
-                          <div class="modal-body" id="saleInfo">
-                            <p>Deal Price: <span id="dealPrice"></span></p>
-                            <p>Retail Price: <span id="retailPrice"></span></p>
-                            <p><a id="dealLink" href="" target="_blank">View Deal</a></p>
-                          </div>
-                          <div class="modal-footer justify-content-center">
-                            <button type="button" class="btn btn-secondary bg-red white-font" data-mdb-dismiss="modal">Return to
-                              Site</button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <!-- Modal -->
-                  </div>
-                </div>
-              </div>
-              <!--First Column-->
-
-              <!--Second Column-->
-              <div class="col-lg-4 col-md-12 mb-6 mb-lg-0" id="card_1">
-
-                <div class="card">
-
-                  <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
-
-                    <img id="card_Img_1" src="https://mdbcdn.b-cdn.net/img/new/standard/nature/111.webp"
-                      class="img-fluid" />
-
-                    <a href="#!">
-                      <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-                    </a>
-
-                  </div>
-
-                  <div class="card-body white-font">
-
-                    <h4 id="card_title_1" class="card-title">Card title</h4>
-
-                    <p class="card-text" id="genre_1">Some quick example text to build on the card title and make up the
-                      bulk of the card's content.</p>
-
-                    <!-- Button trigger modal -->
-                    <button type="button" id="button_1" class="btn btn-primary bg-red modal-button" data-mdb-toggle="modal"
-                      data-mdb-target="#exampleModal">
-                      Get Deal!
-                    </button>
-                    <!-- Button trigger modal -->
-
-                    <!-- Modal -->
-                    <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel"
-                      aria-hidden="true">
-                      <div class="modal-dialog">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Here Are Your Deals!</h5>
-                            <button type="button" class="btn-close" data-mdb-dismiss="modal"
-                              aria-label="Close"></button>
-                          </div>
-                          <div class="modal-body" id="saleInfo">
-                            <p>Deal Price: <span id="dealPrice"></span></p>
-                            <p>Retail Price: <span id="retailPrice"></span></p>
-                            <p><a id="dealLink" href="" target="_blank">View Deal</a></p>
-                          </div>
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Return to
-                              Site</button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <!-- Modal -->
-                  </div>
-                </div>
-              </div>
-              <!--Second Column-->
-
-              <!--Third Column-->
-              <div class="col-lg-4 col-md-12 mb-6 mb-lg-0" id="card_2">
-
-                <div class="card">
-
-                  <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
-
-                    <img id="card_Img_2" src="https://mdbcdn.b-cdn.net/img/new/standard/nature/111.webp"
-                      class="img-fluid" />
-
-                    <a href="#!">
-                      <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-                    </a>
-
-                  </div>
-
-                  <div class="card-body white-font">
-
-                    <h4 id="card_title_2" class="card-title">Card title</h4>
-
-                    <p class="card-text" id="genre_2">Some quick example text to build on the card title and make up the
-                      bulk of the card's content.</p>
-
-                    <!-- Button trigger modal -->
-                    <button type="button" id="button_2" class="btn btn-primary bg-red modal-button" data-mdb-toggle="modal"
-                      data-mdb-target="#exampleModal">
-                      Get Deal!
-                    </button>
-                    <!-- Button trigger modal -->
-
-                    <!-- Modal -->
-                    <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel"
-                      aria-hidden="true">
-                      <div class="modal-dialog">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Here Are Your Deals!</h5>
-                            <button type="button" class="btn-close" data-mdb-dismiss="modal"
-                              aria-label="Close"></button>
-                          </div>
-                          <div class="modal-body" id="saleInfo2">
-                            <p>Deal Price: <span id="dealPrice"></span></p>
-                            <p>Retail Price: <span id="retailPrice"></span></p>
-                            <p><a id="dealLink" href="" target="_blank">View Deal</a></p>
-                          </div>
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Return to
-                              Site</button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-
-                  </div>
-
-                </div>
-
-              </div>
-              <!--Third Column-->
-
+        <div class="row ms-2 me-5">
+          <!--Side Navbar-->
+
+          <div class="col-md-2 sidebar gunship-font">
+            <div class="pb-5">
+              <h3>HOME</h3>
+
+              <ul>
+                <li>
+                  <a class="genreTab" id="top_rated" onclick="onLoad()">
+                    Top Rated
+                  </a>
+                </li>
+                <li>
+                  <a class="genreTab" id="top_rated" onclick="displayPopular()">
+                    Favorites
+                  </a>
+                </li>
+              </ul>
             </div>
 
-          </section>
+            <div class="pt-5">
+              <h3>GENRES</h3>
 
+              <ul>
+                <li>
+                  <a class="genreTab" id="action"> Action </a>
+                </li>
+
+                <li>
+                  <a class="genreTab" id="strategy"> Strategy </a>
+                </li>
+
+                <li>
+                  <a class="genreTab" id="indie"> Indie </a>
+                </li>
+
+                <li>
+                  <a class="genreTab" id="shooter"> Shooter </a>
+                </li>
+
+                <li>
+                  <a class="genreTab" id="adventure"> Adventure </a>
+                </li>
+
+                <li>
+                  <a class="genreTab" id="puzzle"> Puzzle </a>
+                </li>
+
+                <li>
+                  <a class="genreTab" id="racing"> Racing </a>
+                </li>
+
+                <li>
+                  <a class="genreTab" id="sports"> Sports </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!--Side Navbar-->
+
+          <!--Main Content-->
+          <div class="col-md-10">
+            <section class="mb-10 text-center">
+              <h2 class="fw-bold mb-7 text-center gunship-font">
+                Here's What's Good...
+              </h2>
+
+              <div class="row gx-lg-5" id="gameCards"></div>
+            </section>
+          </div>
+          <!--Main Content-->
         </div>
-        <!--Main Content-->
-
-
       </div>
-
-    </div>
-
-  </main>
-  <!--Main Layout-->
-  <!-- Custom scripts -->
-  <script src="./assets/js/script.js"> </script>
-
-</body>
-
+    </main>
+    <!--Main Layout-->
+    <!-- Custom scripts -->
+    <script src="./assets/js/script.js"></script>
+  </body>
 </html>
