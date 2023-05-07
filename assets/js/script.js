@@ -15,6 +15,7 @@ const callRawgAPI = async (queryParam) => {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
     const data = await response.json();
+    console.log(data.results);
     return data.results;
   } catch (error) {
     console.error(error);
@@ -67,7 +68,7 @@ const createSuggestionsDisplay = (data) => {
 searchInput.addEventListener("input", async () => {
   const query = `&search=${searchInput.value}`;
   const data = await callRawgAPI(query);
-  createSuggestionsDisplay(data.results);
+  createSuggestionsDisplay(data);
 });
 
 // This is a function that is called when an element with the class 'suggestionItem' is clicked on
@@ -75,7 +76,7 @@ document.addEventListener("click", async (e) => {
   if ((target = e.target.closest(".suggestionItem"))) {
     const query = `&search=${target.id}`;
     const data = await callRawgAPI(query);
-    console.log(data);
+    createCards(data);
   } else if ((target = e.target.closest(".genreTab"))) {
     const query = `&genres=${target.id}`;
     const data = await callRawgAPI(query);
@@ -94,4 +95,6 @@ const onLoad = async () => {
   createCards(data);
 };
 
-window.load(onLoad());
+window.onload = () => {
+  onLoad();
+};
