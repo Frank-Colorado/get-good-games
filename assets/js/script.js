@@ -26,7 +26,7 @@ const callRawgAPI = async (queryParam) => {
 // This is a function called 'createCards'
 const createCards = (data) => {
   cardsDiv.innerHTML = "";
-  data.forEach((game, i) => {
+  for (const game of data) {
     const gameCard = document.createElement("div");
     gameCard.classList.add("col-lg-4", "col-md-12", "mb-6");
     gameCard.innerHTML = `
@@ -54,7 +54,7 @@ const createCards = (data) => {
       >
       Get Deal!
       </button>
-      
+
       <div
       class="modal fade"
       id="myModal"
@@ -95,9 +95,9 @@ const createCards = (data) => {
       </div>
       </div>
 
-    `;
+`;
     cardsDiv.appendChild(gameCard);
-  });
+  }
 };
 
 // This is a function called 'createSuggestionsDisplay'
