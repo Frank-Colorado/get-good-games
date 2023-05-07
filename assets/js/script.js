@@ -6,7 +6,7 @@ const searchInput = document.getElementById("search_input");
 const suggestionsList = document.getElementById("suggestions");
 // MAIN CONTENT VARIABLES
 const cardsDiv = document.getElementById("gameCards");
-
+const modal = document.getElementById("myModal");
 // This is an asynchronous function called 'callRawgApi'
 const callRawgAPI = async (queryParam) => {
   try {
@@ -25,7 +25,7 @@ const callRawgAPI = async (queryParam) => {
 // This is a function called 'createCards'
 const createCards = (data) => {
   cardsDiv.innerHTML = "";
-  data.forEach((game) => {
+  data.forEach((game, i) => {
     const gameCard = document.createElement("div");
     gameCard.classList.add("col-lg-4", "col-md-12", "mb-6");
     gameCard.innerHTML = `
