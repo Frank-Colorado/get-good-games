@@ -7,6 +7,7 @@ const suggestionsList = document.getElementById("suggestions");
 // MAIN CONTENT VARIABLES
 const cardsDiv = document.getElementById("gameCards");
 const modal = document.getElementById("myModal");
+
 // This is an asynchronous function called 'callRawgApi'
 const callRawgAPI = async (queryParam) => {
   try {
@@ -43,6 +44,57 @@ const createCards = (data) => {
       <p class="card-text">
         Genre: ${game.genres[0].name}
       </p>
+
+      <button
+      type="button"
+      id="modalbutton"
+      class="btn btn-primary bg-red modal-button"
+      data-mdb-toggle="modal"
+      data-mdb-target="#myModal"
+      >
+      Get Deal!
+      </button>
+      
+      <div
+      class="modal fade"
+      id="myModal"
+      tabindex="-1"
+      aria-labelledby="myModalLabel"
+      aria-hidden="true"
+      >
+      <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">
+            Here Are Your Deals!
+          </h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-mdb-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body" id="saleInfo">
+          <p>Deal Price: <span id="dealPrice"></span></p>
+          <p>Retail Price: <span id="retailPrice"></span></p>
+          <p>
+            <a id="dealLink" href="" target="_blank">View Deal</a>
+          </p>
+        </div>
+        <div class="modal-footer justify-content-center">
+          <button
+            type="button"
+            class="btn btn-secondary bg-red white-font"
+            data-mdb-dismiss="modal"
+          >
+            Return to Site
+          </button>
+        </div>
+      </div>
+      </div>
+      </div>
+
     `;
     cardsDiv.appendChild(gameCard);
   });
