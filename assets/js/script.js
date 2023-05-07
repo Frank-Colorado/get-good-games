@@ -16,84 +16,99 @@ const callRawgAPI = async (queryParam) => {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
     const data = await response.json();
-    console.log(data.results);
     return data.results;
   } catch (error) {
     console.error(error);
   }
 };
 
+// This is an asynchronous function called 'callRawgApi'
+const callCheapSharkAPI = async (title) => {
+  const encodedGameTitle = encodeURIComponent(title);
+  const URL = `https://www.cheapshark.com/api/1.0/games?title=${encodedGameTitle}&exact=0&limit=1`;
+  try {
+    const response = await fetch(URL);
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 // This is a function called 'createCards'
-const createCards = (data) => {
+const createCards = async (data) => {
   cardsDiv.innerHTML = "";
   for (const game of data) {
+    const deal = await callCheapSharkAPI(game.name);
+    console.log(deal);
     const gameCard = document.createElement("div");
     gameCard.classList.add("col-lg-4", "col-md-12", "mb-6");
     gameCard.innerHTML = `
-    <div class="card">
-    <div
-      class="bg-image hover-overlay ripple"
-      data-mdb-ripple-color="light"
-    >
-      <img src= ${game.background_image} class="img-fluid" />
-    </div>
+<div class="card">
+<div
+  class="bg-image hover-overlay ripple"
+  data-mdb-ripple-color="light"
+>
+  <img src= ${game.background_image} class="img-fluid" />
+</div>
 
-    <div class="card-body black-font">
-      <h4 id="card_title_0" class="card-title">${game.name}</h4>
+<div class="card-body black-font">
+  <h4 id="card_title_0" class="card-title">${game.name}</h4>
 
-      <p class="card-text">
-        Genre: ${game.genres[0].name}
-      </p>
+  <p class="card-text">
+    Genre: ${game.genres[0].name}
+  </p>
 
+  <button
+  type="button"
+  id="modalbutton"
+  class="btn btn-primary bg-red modal-button"
+  data-mdb-toggle="modal"
+  data-mdb-target="#myModal"
+  >
+  Get Deal!
+  </button>
+  
+  <div
+  class="modal fade"
+  id="myModal"
+  tabindex="-1"
+  aria-labelledby="myModalLabel"
+  aria-hidden="true"
+  >
+  <div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="exampleModalLabel">
+        Here Are Your Deals!
+      </h5>
       <button
-      type="button"
-      id="modalbutton"
-      class="btn btn-primary bg-red modal-button"
-      data-mdb-toggle="modal"
-      data-mdb-target="#myModal"
+        type="button"
+        class="btn-close"
+        data-mdb-dismiss="modal"
+        aria-label="Close"
+      ></button>
+    </div>
+    <div class="modal-body" id="saleInfo">
+      <p>Deal Price: <span id="dealPrice"> ${deal[0].cheapest}</span></p>
+        <a id="dealLink" href="https://www.cheapshark.com/redirect?dealID=${deal[0].cheapestDealID}" target="_blank">View Deal</a>
+      </p>
+    </div>
+    <div class="modal-footer justify-content-center">
+      <button
+        type="button"
+        class="btn btn-secondary bg-red white-font"
+        data-mdb-dismiss="modal"
       >
-      Get Deal!
+        Return to Site
       </button>
-
-      <div
-      class="modal fade"
-      id="myModal"
-      tabindex="-1"
-      aria-labelledby="myModalLabel"
-      aria-hidden="true"
-      >
-      <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">
-            Here Are Your Deals!
-          </h5>
-          <button
-            type="button"
-            class="btn-close"
-            data-mdb-dismiss="modal"
-            aria-label="Close"
-          ></button>
-        </div>
-        <div class="modal-body" id="saleInfo">
-          <p>Deal Price: <span id="dealPrice"></span></p>
-          <p>Retail Price: <span id="retailPrice"></span></p>
-          <p>
-            <a id="dealLink" href="" target="_blank">View Deal</a>
-          </p>
-        </div>
-        <div class="modal-footer justify-content-center">
-          <button
-            type="button"
-            class="btn btn-secondary bg-red white-font"
-            data-mdb-dismiss="modal"
-          >
-            Return to Site
-          </button>
-        </div>
-      </div>
-      </div>
-      </div>
+    </div>
+  </div>
+  </div>
+  </div>
 
 `;
     cardsDiv.appendChild(gameCard);
