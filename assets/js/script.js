@@ -125,13 +125,17 @@ const setDeals = (deal) => {
   }
 };
 
-const getFavoriteGames = async () => {
+const getFavoriteGameData = (games) => {
+  return Promise.all(games.map((game) => callRawgAPI(`&search=${game}`)));
+};
+
+const setFavoriteGames = async () => {
   // This function will be called when the favorites tab is clicked
   const favoriteGames = JSON.parse(localStorage.getItem("favoriteGames"));
   if (favoriteGames === "") {
     console.log("no favorites");
   } else {
-    const favoritesData = await favoriteGameData(favoriteGames);
+    const favoritesData = await getFavoriteGameData(favoriteGames);
     const favorites = favoritesData.map((favorite) => favorite[0]);
     console.log(favorites);
   }
