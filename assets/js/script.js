@@ -42,8 +42,6 @@ const callCheapSharkAPI = async (title) => {
 const createCards = async (data) => {
   cardsDiv.innerHTML = "";
   for (const game of data) {
-    const deal = await callCheapSharkAPI(game.name);
-    console.log(deal);
     const gameCard = document.createElement("div");
     gameCard.classList.add("col-lg-4", "col-md-12", "mb-6");
     gameCard.innerHTML = `
@@ -71,42 +69,7 @@ const createCards = async (data) => {
   >
   Get Deal!
   </button>
-  
-  <div
-  class="modal fade"
-  id="myModal"
-  tabindex="-1"
-  aria-labelledby="myModalLabel"
-  aria-hidden="true"
-  >
-  <div class="modal-dialog">
-  <div class="modal-content">
-    <div class="modal-header">
-      <h5 class="modal-title" id="exampleModalLabel">
-        Here Are Your Deals!
-      </h5>
-      <button
-        type="button"
-        class="btn-close"
-        data-mdb-dismiss="modal"
-        aria-label="Close"
-      ></button>
     </div>
-    <div class="modal-body" id="saleInfo">
-      <p>Deal Price: <span id="dealPrice"> ${deal[0].cheapest}</span></p>
-        <a id="dealLink" href="https://www.cheapshark.com/redirect?dealID=${deal[0].cheapestDealID}" target="_blank">View Deal</a>
-      </p>
-    </div>
-    <div class="modal-footer justify-content-center">
-      <button
-        type="button"
-        class="btn btn-secondary bg-red white-font"
-        data-mdb-dismiss="modal"
-      >
-        Return to Site
-      </button>
-    </div>
-  </div>
   </div>
   </div>
 
@@ -165,3 +128,5 @@ const onLoad = async () => {
 window.onload = () => {
   onLoad();
 };
+
+//const deal = await callCheapSharkAPI(game.name);
