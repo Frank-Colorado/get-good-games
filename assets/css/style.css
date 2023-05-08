@@ -39,6 +39,7 @@ li {
 
 .btn {
   background-color: bg-light;
+  cursor: pointer;
 }
 
 h5 {

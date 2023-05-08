@@ -111,7 +111,7 @@ const setDeals = (deal) => {
     modalBody.innerHTML = `
     <p> Cheapest Deal: $<span id="dealPrice">${deal[0].cheapest}</span></p>
     <p>
-      <a id="dealLink" href="https://www.cheapshark.com/redirect?dealID=${deal[0].cheapestDealID}" target="_blank" class="red"> VIEW DEAL </a>
+    <a id="dealLink" href="https://www.cheapshark.com/redirect?dealID=${deal[0].cheapestDealID}" target="_blank" class="red"> VIEW DEAL </a>
     </p>
     `;
     modalContainer.appendChild(modalBody);
@@ -124,10 +124,18 @@ const setDeals = (deal) => {
     modal.classList.remove("d-none");
   }
 };
+
 // This is an async function called 'saveLikedGame'
-const getLikedGame = (btn, gameId) => {
-  // Check the length of 'favorites' list
-  // If length
+const saveLikedGame = (btn, gameId) => {
+  btn.classList.toggle("red");
+  const favoriteGames = JSON.parse(localStorage.getItem("favoriteGames")) || [];
+  if (!favoriteGames.includes(gameId)) {
+    favoriteGames.push(gameId);
+  }
+  if (favoriteGames.length > 10) {
+    favoriteGames.shift();
+  }
+  localStorage.setItem("favoriteGames", JSON.stringify(gameId));
 };
 // This is an asynchronous function that is called when an input event happens to 'searchInput'
 searchInput.addEventListener("input", async () => {
@@ -160,21 +168,15 @@ document.onclick = async (e) => {
       const dealData = await callCheapSharkAPI(id);
       setDeals(dealData);
     case "likeBtn":
-      console.log(e.target);
-      // call function that changes like btn display and passes (e.target)
       saveLikedGame(e.target, id);
-    // call function that saves the game liked to local storage.`
-
-    default:
-      console.log("nothing clicked");
   }
 };
 
 // This is a function that will be called when the window object is clicked
 window.onclick = (e) => {
-  e.target == modal
-    ? modal.classList.add("d-none")
-    : console.log("modal clicked");
+  if (e.target == modal) {
+    modal.classList.add("d-none");
+  }
 };
 
 // This is a function called 'onLoad'
