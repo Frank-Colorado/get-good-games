@@ -62,10 +62,9 @@ const createCards = async (data) => {
 
   <button
   type="button"
-  id="modalbutton"
+  id="dealbutton"
   class="btn btn-primary bg-red modal-button"
-  data-mdb-toggle="modal"
-  data-mdb-target="#myModal"
+  data-id="${game.name}"
   >
   Get Deal!
   </button>
@@ -87,9 +86,9 @@ const createSuggestionsDisplay = (data) => {
   // create list item
   suggestions.forEach((suggestion) => {
     const newSuggestion = document.createElement("li");
-    newSuggestion.id = suggestion.name;
+    newSuggestion.setAttribute("data-id", suggestion.name);
     newSuggestion.innerHTML = suggestion.name;
-    newSuggestion.className = "suggestionItem";
+    newSuggestion.id = "suggestionItem";
     suggestionsList.appendChild(newSuggestion);
   });
 };
@@ -103,18 +102,40 @@ searchInput.addEventListener("input", async () => {
 
 // This is a function that is called when an element with the class 'suggestionItem' is clicked on
 document.addEventListener("click", async (e) => {
-  if ((target = e.target.closest(".suggestionItem"))) {
-    const query = `&search=${target.id}`;
-    const data = await callRawgAPI(query);
-    createCards(data);
-  } else if ((target = e.target.closest(".genreTab"))) {
-    const query = `&genres=${target.id}`;
-    const data = await callRawgAPI(query);
-    createCards(data);
-  } else {
-    console.log("nothing clicked");
+  const target = e.target.id;
+  const id = e.target.getAttribute("data-id");
+  console.log(target);
+  console.log(id);
+  switch (target) {
+    case "suggestionItem":
+      const query = `&search=${id}`;
+      const data = await callRawgAPI(query);
+      createCards(data);
   }
 });
+
+// if ((target = e.target.closest(".suggestionItem"))) {
+//   const query = `&search=${target.id}`;
+//   const data = await callRawgAPI(query);
+//   createCards(data);
+// } else if ((target = e.target.closest(".genreTab"))) {
+//   const query = `&genres=${target.id}`;
+//   const data = await callRawgAPI(query);
+//   createCards(data);
+// } else {
+//   console.log("nothing clicked");
+// }
+
+// function checkDeals() {
+//   const dealBtns = document.querySelectorAll(".modal-button");
+//   console.log(dealBtns);
+//   dealBtns.forEach((btn) => {
+//     btn.onclick = () => {
+//       const id = btn.getAttribute("data-id");
+//       console.log(id);
+//     };
+//   });
+// }
 
 // This is a function called 'onLoad'
 // It has 0 parameters
@@ -125,8 +146,8 @@ const onLoad = async () => {
   createCards(data);
 };
 
-// window.onload = () => {
-//   onLoad();
-// };
+window.onload = () => {
+  onLoad();
+};
 
 //const deal = await callCheapSharkAPI(game.name);
