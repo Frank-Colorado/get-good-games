@@ -26,6 +26,10 @@ li {
   list-style-type: none;
 }
 
+.red {
+  color: #ea526f;
+}
+
 .bg-red {
   background-color: #ea526f;
 }
@@ -113,9 +117,6 @@ h5 {
   width: 60%;
 }
 
-a {
-  color: #ea526f;
-}
 a:hover {
   color: aliceblue !important;
   cursor: pointer;
@@ -196,8 +197,6 @@ a:hover {
 /* Icon Styling */
 
 .like-icon {
-  fill: #ea526f;
-  color: #ea526f;
   cursor: pointer;
 }
 

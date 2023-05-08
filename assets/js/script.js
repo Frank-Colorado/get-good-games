@@ -58,7 +58,7 @@ const createCards = async (data) => {
   <img src= ${game.background_image} class="img-fluid" />
 </div>
 <div class="card-body black-font">
-  <i id='likeBtn' class="fa-regular fa-heart fa-lg like-icon d-flex justify-content-end" data-id="${game.name}"></i>
+  <i id='likeBtn' class="fa-solid fa-heart fa-lg like-icon d-flex justify-content-end" data-id="${game.name}"></i>
   <h4 id="card_title_0" class="card-title">${game.name}</h4>
 
   <p class="card-text">
@@ -98,6 +98,37 @@ const createSuggestionsDisplay = (data) => {
   });
 };
 
+// This is a function called 'setDeals'
+const setDeals = (deal) => {
+  modalContainer.innerHTML = "";
+  if (deal.length > 0) {
+    modalTitle.innerHTML = `
+    <h2> HERE'S YOUR DEAL FOR ${deal[0].external.toUpperCase()} </h2>
+    <i class="fa-solid fa-face-laugh-beam fa-2xl" id="search_icon"></i>
+    `;
+    const modalBody = document.createElement("div");
+    modalBody.classList.add("myModal-body", "py-5");
+    modalBody.innerHTML = `
+    <p> Cheapest Deal: $<span id="dealPrice">${deal[0].cheapest}</span></p>
+    <p>
+      <a id="dealLink" href="https://www.cheapshark.com/redirect?dealID=${deal[0].cheapestDealID}" target="_blank" class="red"> VIEW DEAL </a>
+    </p>
+    `;
+    modalContainer.appendChild(modalBody);
+    modal.classList.remove("d-none");
+  } else {
+    modalTitle.innerText = "SORRY THERE'S NO DEALS";
+    modalTitle.innerHTML = `
+      <h2 class='pb-5'> SORRY THERE'S NO DEALS </h2>
+      <i class="fa-solid fa-face-frown fa-2xl" id="search_icon"></i>`;
+    modal.classList.remove("d-none");
+  }
+};
+// This is an async function called 'saveLikedGame'
+const getLikedGame = (btn, gameId) => {
+  // Check the length of 'favorites' list
+  // If length
+};
 // This is an asynchronous function that is called when an input event happens to 'searchInput'
 searchInput.addEventListener("input", async () => {
   const query = `&search=${searchInput.value}`;
@@ -131,39 +162,19 @@ document.onclick = async (e) => {
     case "likeBtn":
       console.log(e.target);
       // call function that changes like btn display and passes (e.target)
-      //
-      e.target.classList.add("fa-solid");
+      saveLikedGame(e.target, id);
+    // call function that saves the game liked to local storage.`
 
     default:
       console.log("nothing clicked");
   }
 };
 
-// This is a function called 'setDeals'
-const setDeals = (deal) => {
-  modalContainer.innerHTML = "";
-  if (deal.length > 0) {
-    modalTitle.innerHTML = `
-    <h2> HERE'S YOUR DEAL FOR ${deal[0].external.toUpperCase()} </h2>
-    <i class="fa-solid fa-face-laugh-beam fa-2xl" id="search_icon"></i>
-    `;
-    const modalBody = document.createElement("div");
-    modalBody.classList.add("myModal-body", "py-5");
-    modalBody.innerHTML = `
-    <p> Cheapest Deal: $<span id="dealPrice">${deal[0].cheapest}</span></p>
-    <p>
-      <a id="dealLink" href="https://www.cheapshark.com/redirect?dealID=${deal[0].cheapestDealID}" target="_blank"> VIEW DEAL </a>
-    </p>
-    `;
-    modalContainer.appendChild(modalBody);
-    modal.classList.remove("d-none");
-  } else {
-    modalTitle.innerText = "SORRY THERE'S NO DEALS";
-    modalTitle.innerHTML = `
-      <h2 class='pb-5'> SORRY THERE'S NO DEALS </h2>
-      <i class="fa-solid fa-face-frown fa-2xl" id="search_icon"></i>`;
-    modal.classList.remove("d-none");
-  }
+// This is a function that will be called when the window object is clicked
+window.onclick = (e) => {
+  e.target == modal
+    ? modal.classList.add("d-none")
+    : console.log("modal clicked");
 };
 
 // This is a function called 'onLoad'
@@ -173,13 +184,6 @@ const setDeals = (deal) => {
 const loadPopular = async () => {
   const data = await callRawgAPI("&metacritic=100");
   createCards(data);
-};
-
-// This is a function that will be called when the window object is clicked
-window.onclick = (e) => {
-  e.target == modal
-    ? modal.classList.add("d-none")
-    : console.log("modal clicked");
 };
 
 // This is a function that will be called when the window object is loaded
