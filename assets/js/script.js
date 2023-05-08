@@ -124,7 +124,7 @@ document.addEventListener("click", async (e) => {
       break;
     case "dealButton":
       const dealData = await callCheapSharkAPI(id);
-      console.log(dealData);
+      setDeals();
     default:
       console.log("nothing clicked");
   }
@@ -139,8 +139,8 @@ const onLoad = async () => {
   createCards(data);
 };
 
-// window.onload = () => {
-//   onLoad();
-// };
+window.onload = () => {
+  onLoad();
+};
 
 //const deal = await callCheapSharkAPI(game.name);

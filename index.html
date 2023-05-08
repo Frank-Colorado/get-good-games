@@ -63,6 +63,23 @@
     <!--Main Layout-->
 
     <main>
+      <!-- Modal -->
+      <div id="myModal" class="my-modal d-none">
+        <!-- Modal content -->
+        <div class="myModal-content">
+          <div class="myModal-header gunship-font">
+            <span class="close">&times;</span>
+            <h2 id="modalHeader"></h2>
+          </div>
+          <div id="myModalBody" class="myModal-body d-none">
+            <p><span id="dealPrice"></span></p>
+            <p>
+              <a id="dealLink" href="" target="_blank"></a>
+            </p>
+          </div>
+        </div>
+      </div>
+      <!-- Modal -->
       <div class="container-fluid">
         <div class="row ms-2 me-5">
           <!--Side Navbar-->
@@ -131,24 +148,7 @@
                 Here's What's Good...
               </h2>
               <!-- Game Card Display -->
-              <div class="row gx-lg-5" id="gameCards">
-                <!-- Modal -->
-                <div id="myModal" class="my-modal">
-                  <!-- Modal content -->
-                  <div class="myModal-content">
-                    <div class="myModal-header gunship-font">
-                      <span class="close">&times;</span>
-                      <h2 id="modalHeader">SORRY, NO DEALS! :(</h2>
-                    </div>
-                    <div class="myModal-body" id="myModalBody">
-                      <p><span id="dealPrice"></span></p>
-                      <p>
-                        <a id="dealLink" href="" target="_blank"></a>
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <div class="row gx-lg-5" id="gameCards"></div>
             </section>
           </div>
           <!--Main Content-->
