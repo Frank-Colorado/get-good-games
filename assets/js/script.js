@@ -180,5 +180,3 @@ window.onclick = (e) => {
 window.onload = () => {
   loadPopular();
 };
-
-//const deal = await callCheapSharkAPI(game.name);
