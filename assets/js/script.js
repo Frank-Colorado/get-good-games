@@ -58,7 +58,7 @@ const createCards = async (data) => {
   <img src= ${game.background_image} class="img-fluid" />
 </div>
 <div class="card-body black-font">
-  <i  id='likeBtn' class="fa-regular fa-heart fa-lg like-icon d-flex justify-content-end" onclick='cardLiked()'></i>
+  <i id='likeBtn' class="fa-regular fa-heart fa-lg like-icon d-flex justify-content-end" data-id="${game.name}"></i>
   <h4 id="card_title_0" class="card-title">${game.name}</h4>
 
   <p class="card-text">
@@ -112,8 +112,6 @@ searchInput.addEventListener("input", async () => {
 document.onclick = async (e) => {
   const target = e.target.id;
   const id = e.target.getAttribute("data-id");
-  console.log(target);
-  console.log(id);
   switch (target) {
     case "suggestionItem":
       const searchQuery = `&search=${id}`;
@@ -130,6 +128,12 @@ document.onclick = async (e) => {
     case "dealButton":
       const dealData = await callCheapSharkAPI(id);
       setDeals(dealData);
+    case "likeBtn":
+      console.log(e.target);
+      // call function that changes like btn display and passes (e.target)
+      //
+      e.target.classList.add("fa-solid");
+
     default:
       console.log("nothing clicked");
   }
