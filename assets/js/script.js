@@ -124,18 +124,18 @@ const setDeals = (deal) => {
     modal.classList.remove("d-none");
   }
 };
-
+const getLikedGames = () => {
+  // This function will be called when the favorites tab is clicked
+};
 // This is an async function called 'saveLikedGame'
-const saveLikedGame = (btn, gameId) => {
-  btn.classList.toggle("red");
-  const favoriteGames = JSON.parse(localStorage.getItem("favoriteGames")) || [];
-  if (!favoriteGames.includes(gameId)) {
-    favoriteGames.push(gameId);
+const saveLikedGame = (game, favoriteGames) => {
+  if (!favoriteGames.includes(game)) {
+    favoriteGames.push(game);
   }
   if (favoriteGames.length > 10) {
     favoriteGames.shift();
   }
-  localStorage.setItem("favoriteGames", JSON.stringify(gameId));
+  localStorage.setItem("favoriteGames", JSON.stringify(favoriteGames));
 };
 // This is an asynchronous function that is called when an input event happens to 'searchInput'
 searchInput.addEventListener("input", async () => {
@@ -168,7 +168,11 @@ document.onclick = async (e) => {
       const dealData = await callCheapSharkAPI(id);
       setDeals(dealData);
     case "likeBtn":
-      saveLikedGame(e.target, id);
+      e.target.classList.toggle("red");
+      const favoriteGames =
+        JSON.parse(localStorage.getItem("favoriteGames")) || [];
+      console.log(favoriteGames);
+      saveLikedGame(id, favoriteGames);
   }
 };
 
