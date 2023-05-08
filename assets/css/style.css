@@ -9,6 +9,9 @@
   src: url(../fonts/gunshipboldital.ttf);
 }
 
+.d-none {
+  display: none;
+}
 .gunship-font {
   font-family: "gunship";
   color: #ea526f;
