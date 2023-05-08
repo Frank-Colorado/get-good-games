@@ -125,8 +125,8 @@ const onLoad = async () => {
   createCards(data);
 };
 
-window.onload = () => {
-  onLoad();
-};
+// window.onload = () => {
+//   onLoad();
+// };
 
 //const deal = await callCheapSharkAPI(game.name);
