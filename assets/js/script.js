@@ -57,8 +57,8 @@ const createCards = async (data) => {
 >
   <img src= ${game.background_image} class="img-fluid" />
 </div>
-
 <div class="card-body black-font">
+  <i  id='likeBtn' class="fa-regular fa-heart fa-lg like-icon d-flex justify-content-end" onclick='cardLiked()'></i>
   <h4 id="card_title_0" class="card-title">${game.name}</h4>
 
   <p class="card-text">

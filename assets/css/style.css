@@ -193,6 +193,12 @@ a:hover {
   color: #ea526f;
 }
 
+/* Icon Styling */
+
+.like-icon {
+  color: #ea526f;
+}
+
 /* MEDIA QUERIES FOR HEADER NAVBAR */
 
 @media (max-width: 481px) {
