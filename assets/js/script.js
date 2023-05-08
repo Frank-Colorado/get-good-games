@@ -6,7 +6,12 @@ const searchInput = document.getElementById("search_input");
 const suggestionsList = document.getElementById("suggestions");
 // MAIN CONTENT VARIABLES
 const cardsDiv = document.getElementById("gameCards");
+// MODAL VARIABLES
 const modal = document.getElementById("myModal");
+const modalBody = document.getElementById("myModalBody");
+const modalTitle = document.getElementById("modalHeader");
+const dealPrice = document.getElementById("dealPrice");
+const dealLink = document.getElementById("dealLink");
 
 // This is an asynchronous function called 'callRawgApi'
 const callRawgAPI = async (queryParam) => {
@@ -125,29 +130,6 @@ document.addEventListener("click", async (e) => {
   }
 });
 
-// if ((target = e.target.closest(".suggestionItem"))) {
-//   const query = `&search=${target.id}`;
-//   const data = await callRawgAPI(query);
-//   createCards(data);
-// } else if ((target = e.target.closest(".genreTab"))) {
-//   const query = `&genres=${target.id}`;
-//   const data = await callRawgAPI(query);
-//   createCards(data);
-// } else {
-//   console.log("nothing clicked");
-// }
-
-// function checkDeals() {
-//   const dealBtns = document.querySelectorAll(".modal-button");
-//   console.log(dealBtns);
-//   dealBtns.forEach((btn) => {
-//     btn.onclick = () => {
-//       const id = btn.getAttribute("data-id");
-//       console.log(id);
-//     };
-//   });
-// }
-
 // This is a function called 'onLoad'
 // It has 0 parameters
 // It will load popular games into the cards on window load
@@ -157,8 +139,8 @@ const onLoad = async () => {
   createCards(data);
 };
 
-window.onload = () => {
-  onLoad();
-};
+// window.onload = () => {
+//   onLoad();
+// };
 
 //const deal = await callCheapSharkAPI(game.name);
