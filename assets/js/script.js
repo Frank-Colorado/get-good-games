@@ -62,7 +62,7 @@ const createCards = async (data) => {
 
   <button
   type="button"
-  id="dealbutton"
+  id="dealButton"
   class="btn btn-primary bg-red modal-button"
   data-id="${game.name}"
   >
@@ -108,9 +108,20 @@ document.addEventListener("click", async (e) => {
   console.log(id);
   switch (target) {
     case "suggestionItem":
-      const query = `&search=${id}`;
-      const data = await callRawgAPI(query);
-      createCards(data);
+      const searchQuery = `&search=${id}`;
+      const searchData = await callRawgAPI(searchQuery);
+      createCards(searchData);
+      break;
+    case "genreTab":
+      const genreQuery = `&genres=${id}`;
+      const genreData = await callRawgAPI(genreQuery);
+      createCards(genreData);
+      break;
+    case "dealButton":
+      const dealData = await callCheapSharkAPI(id);
+      console.log(dealData);
+    default:
+      console.log("nothing clicked");
   }
 });
 
