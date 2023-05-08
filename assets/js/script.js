@@ -135,7 +135,7 @@ document.onclick = async (e) => {
   }
 };
 
-// This is a functin called 'setDeals'
+// This is a function called 'setDeals'
 const setDeals = (deal) => {
   modalContainer.innerHTML = "";
   if (deal.length > 0) {
@@ -154,7 +154,7 @@ const setDeals = (deal) => {
     modalContainer.appendChild(modalBody);
     modal.classList.remove("d-none");
   } else {
-    modalTitle.innerText = "SORRY THERE'S NO DEALS :(";
+    modalTitle.innerText = "SORRY THERE'S NO DEALS";
     modalTitle.innerHTML = `
       <h2 class='pb-5'> SORRY THERE'S NO DEALS </h2>
       <i class="fa-solid fa-face-frown fa-2xl" id="search_icon"></i>`;
@@ -171,12 +171,14 @@ const loadPopular = async () => {
   createCards(data);
 };
 
+// This is a function that will be called when the window object is clicked
 window.onclick = (e) => {
   e.target == modal
     ? modal.classList.add("d-none")
     : console.log("modal clicked");
 };
 
+// This is a function that will be called when the window object is loaded
 window.onload = () => {
   loadPopular();
 };
