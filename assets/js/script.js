@@ -129,6 +129,8 @@ document.addEventListener("click", async (e) => {
       console.log("nothing clicked");
   }
 });
+
+// This is a functin called 'setDeals'
 const setDeals = (deal) => {
   modalContainer.innerHTML = "";
   if (deal.length > 0) {
@@ -156,6 +158,12 @@ const setDeals = (deal) => {
 const onLoad = async () => {
   const data = await callRawgAPI("&metacritic=100");
   createCards(data);
+};
+
+window.onclick = (e) => {
+  e.target == modal
+    ? modal.classList.add("d-none")
+    : console.log("modal clicked");
 };
 
 window.onload = () => {
