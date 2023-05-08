@@ -136,9 +136,12 @@ document.onclick = async (e) => {
 const setDeals = (deal) => {
   modalContainer.innerHTML = "";
   if (deal.length > 0) {
-    modalTitle.innerText = `HERE'S YOUR DEAL FOR ${deal[0].external.toUpperCase()}`;
+    modalTitle.innerHTML = `
+    <h2> HERE'S YOUR DEAL FOR ${deal[0].external.toUpperCase()} </h2>
+    <i class="fa-solid fa-face-laugh-beam fa-2xl" id="search_icon"></i>
+    `;
     const modalBody = document.createElement("div");
-    modalBody.classList.add("myModal-body");
+    modalBody.classList.add("myModal-body", "py-5");
     modalBody.innerHTML = `
     <p> Cheapest Deal: $<span id="dealPrice">${deal[0].cheapest}</span></p>
     <p>
@@ -149,6 +152,9 @@ const setDeals = (deal) => {
     modal.classList.remove("d-none");
   } else {
     modalTitle.innerText = "SORRY THERE'S NO DEALS :(";
+    modalTitle.innerHTML = `
+      <h2 class='pb-5'> SORRY THERE'S NO DEALS </h2>
+      <i class="fa-solid fa-face-frown fa-2xl" id="search_icon"></i>`;
     modal.classList.remove("d-none");
   }
 };
@@ -169,7 +175,7 @@ window.onclick = (e) => {
 };
 
 window.onload = () => {
-  onLoad();
+  loadPopular();
 };
 
 //const deal = await callCheapSharkAPI(game.name);
