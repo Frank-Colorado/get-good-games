@@ -103,6 +103,9 @@ searchInput.addEventListener("input", async () => {
   const query = `&search=${searchInput.value}`;
   const data = await callRawgAPI(query);
   createSuggestionsDisplay(data);
+  if (searchInput.value === "") {
+    suggestionsList.innerHTML = "";
+  }
 });
 
 // This is a function that is called when an element with the class 'suggestionItem' is clicked on
