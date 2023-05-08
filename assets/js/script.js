@@ -8,7 +8,7 @@ const suggestionsList = document.getElementById("suggestions");
 const cardsDiv = document.getElementById("gameCards");
 // MODAL VARIABLES
 const modal = document.getElementById("myModal");
-const modalBody = document.getElementById("myModalBody");
+const modalContainer = document.getElementById("modalContainer");
 const modalTitle = document.getElementById("modalHeader");
 const dealPrice = document.getElementById("dealPrice");
 const dealLink = document.getElementById("dealLink");
@@ -124,11 +124,30 @@ document.addEventListener("click", async (e) => {
       break;
     case "dealButton":
       const dealData = await callCheapSharkAPI(id);
-      setDeals();
+      setDeals(dealData);
     default:
       console.log("nothing clicked");
   }
 });
+const setDeals = (deal) => {
+  modalContainer.innerHTML = "";
+  if (deal.length > 0) {
+    modalTitle.innerText = `HERE'S YOUR DEAL FOR ${deal[0].external.toUpperCase()}`;
+    const modalBody = document.createElement("div");
+    modalBody.classList.add("myModal-body");
+    modalBody.innerHTML = `
+    <p> Cheapest Deal: $<span id="dealPrice">${deal[0].cheapest}</span></p>
+    <p>
+      <a id="dealLink" href="https://www.cheapshark.com/redirect?dealID=${deal[0].cheapestDealID}" target="_blank"> VIEW DEAL </a>
+    </p>
+    `;
+    modalContainer.appendChild(modalBody);
+    modal.classList.remove("d-none");
+  } else {
+    modalTitle.innerText = "SORRY THERE'S NO DEALS :(";
+    modal.classList.remove("d-none");
+  }
+};
 
 // This is a function called 'onLoad'
 // It has 0 parameters
