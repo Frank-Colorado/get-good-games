@@ -75,6 +75,13 @@ h5 {
   cursor: pointer;
 }
 
+#suggestions {
+  width: 100%;
+  background-color: white;
+  position: absolute;
+  z-index: 1;
+}
+
 /* SIDEBAR STYLING */
 
 .sidebar h3 {
