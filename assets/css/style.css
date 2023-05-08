@@ -196,7 +196,9 @@ a:hover {
 /* Icon Styling */
 
 .like-icon {
+  fill: #ea526f;
   color: #ea526f;
+  cursor: pointer;
 }
 
 /* MEDIA QUERIES FOR HEADER NAVBAR */
