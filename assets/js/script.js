@@ -106,7 +106,7 @@ searchInput.addEventListener("input", async () => {
 });
 
 // This is a function that is called when an element with the class 'suggestionItem' is clicked on
-document.addEventListener("click", async (e) => {
+document.onclick = async (e) => {
   const target = e.target.id;
   const id = e.target.getAttribute("data-id");
   console.log(target);
@@ -116,6 +116,8 @@ document.addEventListener("click", async (e) => {
       const searchQuery = `&search=${id}`;
       const searchData = await callRawgAPI(searchQuery);
       createCards(searchData);
+      searchInput.value = "";
+      suggestionsList.innerHTML = "";
       break;
     case "genreTab":
       const genreQuery = `&genres=${id}`;
@@ -128,7 +130,7 @@ document.addEventListener("click", async (e) => {
     default:
       console.log("nothing clicked");
   }
-});
+};
 
 // This is a functin called 'setDeals'
 const setDeals = (deal) => {
@@ -155,7 +157,7 @@ const setDeals = (deal) => {
 // It has 0 parameters
 // It will load popular games into the cards on window load
 // This function will also be called when clicking on the 'popular' tab
-const onLoad = async () => {
+const loadPopular = async () => {
   const data = await callRawgAPI("&metacritic=100");
   createCards(data);
 };
