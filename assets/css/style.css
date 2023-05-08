@@ -84,12 +84,17 @@ h5 {
 
 /* SIDEBAR STYLING */
 
+.sidebar {
+  position: fixed;
+  z-index: 1;
+}
+
 .sidebar h3 {
   color: white;
 }
 
 .sidebar ul li {
-  margin: 40px 0px 40px;
+  margin: 20px 0px 0px;
   position: relative;
 }
 
