@@ -11,8 +11,6 @@ const mainHeader = document.getElementById("mainHeader");
 const modal = document.getElementById("myModal");
 const modalContainer = document.getElementById("modalContainer");
 const modalTitle = document.getElementById("modalHeader");
-const dealPrice = document.getElementById("dealPrice");
-const dealLink = document.getElementById("dealLink");
 
 // This is an asynchronous function called 'callRawgApi'
 const callRawgAPI = async (queryParam) => {
@@ -149,7 +147,7 @@ const saveLikedGame = (game, favoriteGames) => {
   if (!favoriteGames.includes(game)) {
     favoriteGames.push(game);
   }
-  if (favoriteGames.length > 10) {
+  if (favoriteGames.length > 9) {
     favoriteGames.shift();
   }
   localStorage.setItem("favoriteGames", JSON.stringify(favoriteGames));
