@@ -35,7 +35,7 @@
     <header>
       <nav class="navbar navbar-light bg-light mb-7 pb-4 text-center">
         <div class="container-fluid">
-          <a class="navbar-brand gunship-font lg-font">Get Good Games</a>
+          <p class="navbar-brand gunship-font lg-font">Get Good Games</p>
 
           <img class="header-img" src="https://i.gifer.com/Paz.gif" />
 
@@ -66,7 +66,7 @@
         <!-- Modal content -->
         <div id="myModalContent" class="myModal-content text-center">
           <div class="myModal-header gunship-font">
-            <span class="close">&times;</span>
+            <span id="closeBtn" class="close">&times;</span>
             <div id="modalHeader"></div>
           </div>
           <div id="modalContainer"></div>
@@ -84,12 +84,12 @@
 
                 <ul>
                   <li>
-                    <a class="genreTab" id="top_rated" onclick="loadPopular()">
-                      Top Rated
-                    </a>
+                    <a id="top_rated" onclick="loadPopular()"> Popular </a>
                   </li>
                   <li>
-                    <a class="genreTab" id="top_rated"> Favorites </a>
+                    <a id="favorites" onclick="setFavoriteGames()">
+                      Favorites
+                    </a>
                   </li>
                 </ul>
               </div>
@@ -139,7 +139,10 @@
           <!--Main Content-->
           <div class="col-md-10">
             <section class="mb-10 text-center">
-              <h2 class="fw-bold mb-7 text-center gunship-font">
+              <h2
+                id="mainHeader"
+                class="fw-bold mb-7 text-center gunship-font lg-font"
+              >
                 Here's What's Good...
               </h2>
               <!-- Game Card Display -->
