@@ -110,6 +110,7 @@ h5 {
 }
 
 .sidebar ul li {
+  filter: drop-shadow(0 1px 3px #ea526f);
   margin: 20px 0px 0px;
   position: relative;
 }
@@ -243,5 +244,11 @@ a:hover {
 @media (max-width: 481px) {
   .container-fluid .header-img {
     display: none;
+  }
+}
+
+@media (max-width: 481px) {
+  .sidebar {
+    position: none;
   }
 }
