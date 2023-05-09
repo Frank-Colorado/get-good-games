@@ -6,6 +6,7 @@ const searchInput = document.getElementById("search_input");
 const suggestionsList = document.getElementById("suggestions");
 // MAIN CONTENT VARIABLES
 const cardsDiv = document.getElementById("gameCards");
+const mainHeader = document.getElementById("mainHeader");
 // MODAL VARIABLES
 const modal = document.getElementById("myModal");
 const modalContainer = document.getElementById("modalContainer");
@@ -45,6 +46,7 @@ const callCheapSharkAPI = async (title) => {
 
 // This is a function called 'createCards'
 const createCards = async (data) => {
+  mainHeader.innerText = "Here's whats good...";
   cardsDiv.innerHTML = "";
   for (const game of data) {
     const gameCard = document.createElement("div");
@@ -132,12 +134,13 @@ const getFavoriteGameData = (games) => {
 const setFavoriteGames = async () => {
   // This function will be called when the favorites tab is clicked
   const favoriteGames = JSON.parse(localStorage.getItem("favoriteGames"));
-  if (favoriteGames === "") {
-    console.log("no favorites");
+  if (favoriteGames === null) {
+    mainHeader.innerText = "You haven't liked any games yet!";
+    cardsDiv.innerHTML = "";
   } else {
     const favoritesData = await getFavoriteGameData(favoriteGames);
     const favorites = favoritesData.map((favorite) => favorite[0]);
-    console.log(favorites);
+    createCards(favorites);
   }
 };
 
