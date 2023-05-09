@@ -249,6 +249,20 @@ a:hover {
 
 @media (max-width: 481px) {
   .sidebar {
-    position: none;
+    position: relative;
+  }
+}
+
+@media (max-width: 481px) {
+  .card-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+@media (max-width: 481px) {
+  .like-icon {
+    padding-bottom: 25px;
   }
 }
