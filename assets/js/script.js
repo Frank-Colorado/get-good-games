@@ -191,6 +191,9 @@ document.onclick = async (e) => {
         JSON.parse(localStorage.getItem("favoriteGames")) || [];
       saveLikedGame(id, favoriteGames);
       break;
+    case "closeBtn":
+      modal.classList.add("d-none");
+      break;
   }
 };
 
